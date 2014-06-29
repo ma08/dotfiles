@@ -12,9 +12,26 @@ stable versions.
 * Revamped .vimrc, removed redundant entries, streamlined plugin options.
 * Molokai to be used as default theme.
 
+### Update on 29 June 2014
+I have pushed another branch `minimal` which removes many of plugins that require more
+than a little effort on the part of user who is new to vim. The branch has just
+enough set of plugins to get started with a nicer interface and accordingly set
+settings. Hence you have two choices, 
+    1. Clone the `master` using the instructions below and checkout the
+       important note **OR**
+    2. Clone the `minimal` using the same instructions and get going. No further
+       tweaking should be required. Feel free to add plugins and other settings
+       of your own choice.
+
 Installation
 ------------
-    git clone https://github.com/vivekiitkgp/Dotfiles-vim.git ~/.vim
+If you want to fetch `master` branch :
+
+    git clone -b master --single-branch https://github.com/vivekiitkgp/Dotfiles-vim.git ~/.vim
+or if you want to fetch 'minimal' branch:
+
+    git clone -b minimal --single-branch https://github.com/vivekiitkgp/Dotfiles-vim.git ~/.vim
+
     cd .vim
     git submodule init
     git submodule update
@@ -31,6 +48,7 @@ changes in the .(g)vimrc file.
 
 Important
 ---------
+## (For `master` branch)
 This Vim configuration uses two plugins and a program  all of which require a little more configuration on behalf of user.
 * `YouCompleteMe` plugin ( a code completion engine for
 vim ) requires a compiled component. After completing steps mentioned above, please refer to [this page]
@@ -51,6 +69,9 @@ If however you do not want to use these plugins, then remove these submodules fr
     let g:airline#extensions#tabline#enabled = 1
 
 In order to save all this trouble, I have also added a `vimrc_stripped` file with relevant sections removed, so that you do not need an extra configuration. Please use this file directly.
+
+## (For `minimal` branch)
+* If you see strange characters in status line or improper appearance then please see the [FAQs] (https://github.com/bling/vim-airline/wiki/FAQ) for the `vim-airline` plugin.
 
 Screenshot
 ----------
