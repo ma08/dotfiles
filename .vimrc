@@ -73,7 +73,7 @@ set number
 set laststatus=2
 set norelativenumber
 
-set timeoutlen=50
+set timeoutlen=400
 set autoread
 
 set novisualbell
@@ -186,10 +186,8 @@ let g:syntastic_always_populate_loc_list = 1 "Update location list
 " Theme
 let g:molokai_original = 1
 let g:rehas256 = 1
-" set background=dark
-let g:dwm_map_keys=1
-" let g:ycm_server_use_vim_stdout = 1
-" let g:ycm_server_log_level = 'debug'
+
+" YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_goto_buffer_command='vertical-split'
