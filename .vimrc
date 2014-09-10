@@ -1,6 +1,5 @@
 call pathogen#infect()
 :Helptags
-
 filetype on 
 filetype plugin indent on
 filetype plugin on
@@ -65,7 +64,7 @@ set smartcase
 set smarttab
 set showcmd
 set incsearch
-" set hlsearch
+set hlsearch
 
 set confirm
 set pastetoggle=<F2>
@@ -73,7 +72,7 @@ set number
 set laststatus=2
 set norelativenumber
 
-set timeoutlen=50
+set timeoutlen=400
 set autoread
 
 set novisualbell
@@ -93,6 +92,17 @@ set spellfile=~/.vim/spell/en.utf-8.add
 "map <C-j> <C-w><j>
 "map <C-l> <C-w><l>
 "map <C-h> <C-w><h>
+map ; :
+inoremap jk <Esc> 
+inoremap <Left>  <NOP> 
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP> 
+
+
+
+
+
 
 set wrap
 if has('statusline')
@@ -193,6 +203,7 @@ let g:dwm_map_keys=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_goto_buffer_command='vertical-split'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 
 " Settings for Vim-notes
 let g:notes_directories = ['~/my_coding/Notes']
@@ -204,4 +215,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
+
+
+
+
 
