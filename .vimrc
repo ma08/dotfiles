@@ -47,8 +47,9 @@ if executable('ag')
 endif
 
 " Display extra whitespace
-" set fillchars+=stl:\ ,stlnc:\
-set list listchars=tab:▸\ ,eol:¬         " Invisibles using the Textmate style
+set fillchars+=stl:\ ,stlnc:\
+set list listchars=tab:▸\ ,trail:·,eol:¬         " Invisibles using the Textmate style
+set mps+=<:>
 
 set autowrite
 
@@ -88,12 +89,6 @@ if exists("+spelllang")
 endif
 set spellfile=~/.vim/spell/en.utf-8.add
 "
-" Map ctrl-movement keys to window switching
-"map <C-k> <C-w><k>
-"map <C-j> <C-w><j>
-"map <C-l> <C-w><l>
-"map <C-h> <C-w><h>
-
 set wrap
 if has('statusline')
   set laststatus=2
@@ -117,7 +112,8 @@ au VimResized * :wincmd =
 au FocusLost * :wa
 let mapleader=','
 set title
-
+set cursorcolumn
+set cursorline
 
 set lazyredraw
 " set confirm
@@ -138,6 +134,10 @@ set noswapfile
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" Do not leave visual mode after visually shifting text
+vnoremap < <gv
+vnoremap > >gv
 
 set wildchar=<Tab> wildmenu wildmode=full
 set complete=.,w,t
@@ -180,7 +180,7 @@ set tags=./tags;/
 " ( For syntastic plugin )
 nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
 cabbrev <silent> bd lclose\|bdelete
-let g:syntastic_always_populate_loc_list = 1 "Update location list
+let g:syntastic_auto_loc_list=1 "Update location list
 
 
 " Theme
