@@ -129,7 +129,7 @@ au FocusLost * :wa
 let mapleader=','
 set title
 set cursorcolumn
-set cursorline
+"set cursorline
 
 set lazyredraw
 " set confirm
@@ -174,7 +174,6 @@ set wildignore+=*.orig "Merge resolution files"
 
 " Set it to 0 if your tags are on a network directory
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 nnoremap <F9> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
@@ -207,7 +206,7 @@ let g:rehas256 = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_goto_buffer_command='vertical-split'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 " Settings for Vim-notes
 let g:notes_directories = ['~/my_coding/Notes']
