@@ -99,6 +99,7 @@ inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
 inoremap <Down>  <NOP> 
+noremap <F4> :set hlsearch! hlsearch?<CR>
 
 
 
