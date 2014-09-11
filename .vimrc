@@ -6,6 +6,10 @@ filetype plugin on
 
 set encoding=utf-8
 
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+    set background=dark
+endif
 " Set syntax if terminal supports colors
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
     set t_Co=256
@@ -129,7 +133,7 @@ au VimResized * :wincmd =
 au FocusLost * :wa
 let mapleader=','
 set title
-set cursorcolumn
+"set cursorcolumn
 "set cursorline
 
 set lazyredraw
