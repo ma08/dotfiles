@@ -51,17 +51,17 @@ endif
 
 " Display extra whitespace
 set fillchars+=stl:\ ,stlnc:\
-set list listchars=tab:▸\ ,trail:·,eol:¬         " Invisibles using the Textmate style
+"set list listchars=tab:▸\ ,trail:·,eol:¬         " Invisibles using the Textmate style
 set mps+=<:>
 
 set autowrite
 
 colorscheme molokai 
 
-set tabstop=4
+set tabstop=2
 set backspace=2
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 set showmatch
@@ -97,19 +97,7 @@ set spellfile=~/.vim/spell/en.utf-8.add
 "map <C-j> <C-w><j>
 "map <C-l> <C-w><l>
 "map <C-h> <C-w><h>
-map ; :
-inoremap jk <Esc> 
-inoremap <Left>  <NOP> 
-inoremap <Right> <NOP>
-inoremap <Up>    <NOP>
-inoremap <Down>  <NOP> 
-noremap <F4> :set hlsearch! hlsearch?<CR>
-
-
-
-
-
-
+"
 set wrap
 if has('statusline')
   set laststatus=2
@@ -141,7 +129,7 @@ set lazyredraw
 set viminfo='20,\"500
 set hidden
 set history=50
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 " Instead of these two options, we can set a single directory for all backups
 " and temporary buffers. This is a better solution in case we don't want our
@@ -224,7 +212,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 
-
-
-
+map ; :
+inoremap jk <Esc> 
+inoremap <Left>  <NOP> 
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP> 
+noremap <F4> :set hlsearch! hlsearch?<CR>
+noremap <F4> :set hlsearch! hlsearch?<CR>
+"Paste in new line
+map <Leader>p o<Esc>p
+"Paste from system clipboard
+map <Leader>P "+p
+"Copy to system clipboard
+vnoremap <Leader>y :<C-u>let @+=@*<CR>
+nnoremap <Leader>yy :<C-u>let @+=getline('.')<CR>
 
