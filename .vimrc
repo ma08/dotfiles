@@ -226,5 +226,5 @@ map <Leader>p o<Esc>p
 map <Leader>P "+p
 "Copy to system clipboard
 vnoremap <Leader>y :<C-u>let @+=@*<CR>
-nnoremap <Leader>yy :<C-u>let @+=getline('.')<CR>
+nnoremap <Leader>yy :<C-u>let @+=getline('.')."\n"<CR>
 
