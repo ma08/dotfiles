@@ -240,4 +240,9 @@ map <Leader>p "+p
 "Copy to system clipboard
 vnoremap <Leader>y :<C-u>let @+=@*<CR>
 nnoremap <Leader>yy :<C-u>let @+=getline('.')."\n"<CR>
-
+"Don't let deletions go into clipboard
+nnoremap <Leader>d "_d
+nnoremap <Leader>D "_D
+nnoremap <Leader>C "_C
+nnoremap <Leader>c "_c
+nnoremap <Leader>x "_x
