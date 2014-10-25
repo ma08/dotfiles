@@ -15,6 +15,7 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
     set t_Co=256
     syntax on
 endif
+set t_Co=256
 
 augroup vimrcEx
   autocmd!
@@ -37,6 +38,10 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
 
+augroup Cpp
+    au BufNewFile *.cpp 0r ~/pro/skeletons/skeleton.cpp
+augroup end
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -54,15 +59,19 @@ set fillchars+=stl:\ ,stlnc:\
 "set list listchars=tab:▸\ ,trail:·,eol:¬         " Invisibles using the Textmate style
 set mps+=<:>
 
+set autochdir
+
 set autowrite
 
-colorscheme molokai 
+colorscheme molokai
+"colorscheme github 
 
 set tabstop=2
 set backspace=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+
 
 set showmatch
 set smartcase
@@ -212,6 +221,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 
+let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
+
+hi MatchParen cterm=none ctermbg=none ctermfg=red
+
 map ; :
 inoremap jk <Esc> 
 inoremap <Left>  <NOP> 
@@ -221,9 +234,9 @@ inoremap <Down>  <NOP>
 noremap <F4> :set hlsearch! hlsearch?<CR>
 noremap <F4> :set hlsearch! hlsearch?<CR>
 "Paste in new line
-map <Leader>p o<Esc>p
+map <Leader>P o<Esc>p
 "Paste from system clipboard
-map <Leader>P "+p
+map <Leader>p "+p
 "Copy to system clipboard
 vnoremap <Leader>y :<C-u>let @+=@*<CR>
 nnoremap <Leader>yy :<C-u>let @+=getline('.')."\n"<CR>
