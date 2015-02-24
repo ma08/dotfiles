@@ -5,6 +5,7 @@ filetype plugin indent on
 filetype plugin on
 
 set encoding=utf-8
+set wrapscan
 
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
