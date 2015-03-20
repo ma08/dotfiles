@@ -67,7 +67,7 @@ set autowrite
 colorscheme molokai
 "colorscheme github 
 
-set tabstop=2
+set tabstop=4
 set backspace=2
 set shiftwidth=2
 set softtabstop=2
@@ -108,6 +108,22 @@ set spellfile=~/.vim/spell/en.utf-8.add
 "map <C-l> <C-w><l>
 "map <C-h> <C-w><h>
 "
+"CTRL-W <Down>					*CTRL-W_<Down>*
+"CTRL-W CTRL-J					*CTRL-W_CTRL-J* *CTRL-W_j*
+"CTRL-W j	Move cursor to Nth window below current one.  Uses the cursor
+"		position to select between alternatives.
+
+"CTRL-W <Up>					*CTRL-W_<Up>*
+"CTRL-W CTRL-K					*CTRL-W_CTRL-K* *CTRL-W_k*
+"CTRL-W k	Move cursor to Nth window above current one.  Uses the cursor
+"		position to select between alternatives.
+"
+nnoremap <tab> <C-w>
+nnoremap <tab><tab> <C-w><C-w>
+map <silent> <A-h> <C-w><
+map <silent> <A-k> <C-W>-
+map <silent> <A-j> <C-W>+
+map <silent> <A-l> <C-w>>
 set wrap
 if has('statusline')
   set laststatus=2
@@ -133,6 +149,14 @@ let mapleader=','
 set title
 "set cursorcolumn
 "set cursorline
+"
+
+nnoremap <C-t> :tabnew<Space>
+nnoremap <Leader>t :tabnew<Space>
+inoremap <C-t> <Esc>:tabnew<Space>
+"tab navigation
+nnoremap <S-h> gT
+nnoremap <S-l> gt
 
 set lazyredraw
 " set confirm
@@ -226,14 +250,17 @@ let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 
 hi MatchParen cterm=none ctermbg=none ctermfg=red
 
+"
+nnoremap <Leader>f :NERDTreeTabsToggle<CR>
+
 map ; :
-inoremap jk <Esc> 
+inoremap jk <C-[> 
 inoremap <Left>  <NOP> 
 inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
 inoremap <Down>  <NOP> 
 noremap <F4> :set hlsearch! hlsearch?<CR>
-noremap <F4> :set hlsearch! hlsearch?<CR>
+noremap <F3> :let @+=@"<CR>
 "Paste in new line
 map <Leader>P o<Esc>p
 "Paste from system clipboard
