@@ -1,5 +1,7 @@
 call pathogen#infect()
+runtime macros/matchit.vim
 :Helptags
+":!ctags -R .
 filetype on 
 filetype plugin indent on
 filetype plugin on
@@ -11,12 +13,18 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
     set background=dark
 endif
+
+if $COLORTERM == 'rxvt-xpm'
+    set t_Co=256
+    set background=dark
+endif
+
+set background=dark
 " Set syntax if terminal supports colors
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
     set t_Co=256
     syntax on
 endif
-set t_Co=256
 
 augroup vimrcEx
   autocmd!
@@ -57,14 +65,14 @@ endif
 
 " Display extra whitespace
 set fillchars+=stl:\ ,stlnc:\
-"set list listchars=tab:▸\ ,trail:·,eol:¬         " Invisibles using the Textmate style
+set list listchars=tab:▸\ ,trail:·,eol:¬         " Invisibles using the Textmate style
 set mps+=<:>
 
 set autochdir
 
 set autowrite
 
-colorscheme molokai
+colorscheme gruvbox
 "colorscheme github 
 
 set tabstop=4
@@ -118,8 +126,8 @@ set spellfile=~/.vim/spell/en.utf-8.add
 "CTRL-W k	Move cursor to Nth window above current one.  Uses the cursor
 "		position to select between alternatives.
 "
-nnoremap <tab> <C-w>
-nnoremap <tab><tab> <C-w><C-w>
+"nnoremap <tab> <C-w>
+"nnoremap <tab><tab> <C-w><C-w>
 map <silent> <A-h> <C-w><
 map <silent> <A-k> <C-W>-
 map <silent> <A-j> <C-W>+
@@ -151,9 +159,11 @@ set title
 "set cursorline
 "
 
-nnoremap <C-t> :tabnew<Space>
-nnoremap <Leader>t :tabnew<Space>
-inoremap <C-t> <Esc>:tabnew<Space>
+"nnoremap <C-t> :tabnew<Space>
+nnoremap <F5> :TlistToggle<CR>
+"inoremap <C-t> <Esc>:tabnew<Space>
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "tab navigation
 nnoremap <S-h> gT
 nnoremap <S-l> gt
@@ -199,6 +209,9 @@ set wildignore+=migrations "Django migrations"
 set wildignore+=*.pyc "Python Object codes"
 set wildignore+=*.orig "Merge resolution files"
 
+"let g:nerdtree_tabs_autofind=1
+let g:nerdtree_tabs_synchronize_view=0
+"let g:nerdtree_tabs_synchronize_focus=0
 " Set it to 0 if your tags are on a network directory
 let g:ycm_collect_identifiers_from_tags_files = 1
 
@@ -229,6 +242,9 @@ let g:syntastic_auto_loc_list=1 "Update location list
 let g:molokai_original = 1
 let g:rehas256 = 1
 
+"NerdTree position
+let g:NERDTreeWinPos = "right"
+
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf = 0
@@ -249,12 +265,12 @@ let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/UltiSnips"
 let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 
 hi MatchParen cterm=none ctermbg=none ctermfg=red
-
-"
+hi MatchParen gui=NONE guibg=NONE guifg=red
+"hi Cursor gui=NONE guifg=#190707 guibg=#11BA0B
 nnoremap <Leader>f :NERDTreeTabsToggle<CR>
 
 map ; :
-inoremap jk <C-[> 
+inoremap jk <Esc>
 inoremap <Left>  <NOP> 
 inoremap <Right> <NOP>
 inoremap <Up>    <NOP>
@@ -274,3 +290,23 @@ nnoremap <Leader>D "_D
 nnoremap <Leader>C "_C
 nnoremap <Leader>c "_c
 nnoremap <Leader>x "_x
+vnoremap <Leader>d "_d
+vnoremap <Leader>D "_D
+vnoremap <Leader>C "_C
+vnoremap <Leader>c "_c
+vnoremap <Leader>x "_x
+
+
+nnoremap <silent> n n:call HLNext(0.1)<cr>
+nnoremap <silent> N N:call HLNext(0.1)<cr>
+
+function! HLNext (blinktime)
+  let [bufnum, lnum, col, off] = getpos('.')
+  let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+  let target_pat = '\c\%#'.@/
+  let ring = matchadd('ErrorMsg', target_pat, 101)
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+  call matchdelete(ring)
+  redraw
+endfunction
