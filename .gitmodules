@@ -1,81 +1,81 @@
 [submodule "bundle/fugitive"]
-	path = bundle/fugitive
+	path = vim/bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
 [submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
+	path = vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
 [submodule "bundle/airline"]
-	path = bundle/airline
+	path = vim/bundle/airline
 	url = https://github.com/bling/vim-airline.git
 [submodule "bundle/syntastic"]
-	path = bundle/syntastic
+	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 [submodule "bundle/tmuxline"]
-	path = bundle/tmuxline
+	path = vim/bundle/tmuxline
 	url = https://github.com/edkolev/tmuxline.vim.git
 [submodule "bundle/pydoc"]
-	path = bundle/pydoc
+	path = vim/bundle/pydoc
 	url = https://github.com/fs111/pydoc.vim.git
 [submodule "bundle/autopep8"]
-	path = bundle/autopep8
+	path = vim/bundle/autopep8
 	url = https://github.com/tell-k/vim-autopep8.git
 [submodule "bundle/vim-dispatch"]
-	path = bundle/vim-dispatch
+	path = vim/bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
 [submodule "bundle/dwm"]
-	path = bundle/dwm
+	path = vim/bundle/dwm
 	url = https://github.com/spolu/dwm.vim.git
 [submodule "bundle/nerdCommenter"]
-	path = bundle/nerdCommenter
+	path = vim/bundle/nerdCommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
 [submodule "bundle/nerdTree"]
-	path = bundle/nerdTree
+	path = vim/bundle/nerdTree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "bundle/autoPairs"]
-	path = bundle/autoPairs
+	path = vim/bundle/autoPairs
 	url = https://github.com/jiangmiao/auto-pairs.git
 [submodule "bundle/molokai"]
-	path = bundle/molokai
+	path = vim/bundle/molokai
 	url = https://github.com/tomasr/molokai.git
 [submodule "bundle/YouCompleteMe"]
-	path = bundle/YouCompleteMe
+	path = vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe
 [submodule "bundle/vim-autopep8"]
-	path = bundle/vim-autopep8
+	path = vim/bundle/vim-autopep8
 	url = https://github.com/tell-k/vim-autopep8
 [submodule "bundle/vim-notes"]
-	path = bundle/vim-notes
+	path = vim/bundle/vim-notes
 	url = https://github.com/xolox/vim-notes.git
 [submodule "bundle/vim-misc"]
-	path = bundle/vim-misc
+	path = vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
 [submodule "bundle/ultisnips"]
-	path = bundle/ultisnips
+	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
 [submodule "bundle/vim-snippets"]
-	path = bundle/vim-snippets
+	path = vim/bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
 [submodule "bundle/NarrowRegion"]
-	path = bundle/NarrowRegion
+	path = vim/bundle/NarrowRegion
 	url = https://github.com/chrisbra/NrrwRgn.git
 [submodule "bundle/tabular"]
-	path = bundle/tabular
+	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 [submodule "bundle/scratch.vim"]
-	path = bundle/scratch.vim
+	path = vim/bundle/scratch.vim
 	url = https://github.com/mtth/scratch.vim
 [submodule "bundle/vim-multiple-cursors"]
-	path = bundle/vim-multiple-cursors
+	path = vim/bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
 [submodule "bundle/vim-nerdtree-tabs"]
-	path = bundle/vim-nerdtree-tabs
+	path = vim/bundle/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
 [submodule "bundle/repeat"]
-	path = bundle/repeat
+	path = vim/bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule "bundle/surround"]
-	path = bundle/surround
+	path = vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "bundle/emmet-vim"]
-	path = bundle/emmet-vim
+	path = vim/bundle/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
