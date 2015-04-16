@@ -72,11 +72,13 @@ Set `t_Co=256` in vimrc accordingly for your term.
 
 Screenshot
 ----------
-The following is a screenshot of vim in urxvt (using tmux) with Python Koans file open.
-
+The following is a screenshot of vim in urxvt with a cpp file. 
 ![vim](terminal_vim_notag.png "Screenshot of terminal with tags")
-![vim](terminal_vim_tag.png "Screenshot of terminal with tags")
-![vim](GUI_vim_tag.png "Screenshot of Vim with Python Koans file")
+The following is a screenshot of vim in urxvt with a cpp file open with tag list
+open.
+![vim](terminal_vim_tag.png "Screenshot of terminal with no tags")
+The following is a screenshot of gvim with a cpp file with tag list open. 
+![vim](GUI_vim_tag.png "Screenshot of GVIM")
 
 Feedback
 --------
