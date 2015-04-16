@@ -9,4 +9,15 @@ spell/
 *.un~
 Session.vim
 .netrwhist
-*~
+ranger/*pyc
+ranger/*pyo
+ranger/tagged
+ranger/bookmarks
+ranger/history
+mpd/mpd.db
+mpd/mpd.pid
+mpd/mpd.log
+mpd/mpdstate
+mpd/playlists
+ncmpcpp/error.log
+ncmpcpp/bindings
