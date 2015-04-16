@@ -1,11 +1,13 @@
 All my dotfiles at one place.
 
-I will delete the i3 and vim dotfiles repo soon.
+I will delete the i3 and vim dotfiles repos soon.
 I have merged them with this repo, so the version history
-stays the same.
+of the two repos is saved in this repo.
 
 ranger for file navigation.
+
 mpd and ncmpcpp for music (command line)
+
 vimperator is a firefox extension
 
 The present state of repo is not suitable for anyone to follow.
