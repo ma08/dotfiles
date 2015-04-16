@@ -1,38 +1,25 @@
-I have completely revamped my older Vim configuration and hence I had to do a forced
-push. If you were using previous repository, you may wish to have look at this
-newer one. I will briefly list the changes here.
+I have started my configuration using [vivekrai's configuration](https://github.com/vivekiitkgp/Dotfiles-vim)
+as the base. If you want a more structured configruation I would suggest to have
+a look at his config. My configuration is bound to have errors. I will make it
+more robust when I find the time.
 
-Changes
--------
-* `.git` tree structure was disrupted because of my experiments with git. Now all
-the plugins are imported as submodules to ensure that you get the latest and
-stable versions.
-* Plugins were selected carefully and useful options were set.
-* Updated Vim to latest version 7.4.227.
-* Revamped .vimrc, removed redundant entries, streamlined plugin options.
-* Molokai to be used as default theme.
+I am using git submodules for managing most of the plugins. However, some
+plugins don't have git repos(hosted on vimscripts or sourceforge). I will name
+those plugins here so that you can install them manually into the `bundle`
+folder.
 
-### Update on 29 June 2014
-I have pushed another branch `minimal` which removes many of plugins that require more
-than a little effort on the part of user who is new to vim. The branch has just
-enough set of plugins to get started with a nicer interface and accordingly set
-settings. Hence you have two choices, 
+1.[taglist](http://vim.sourceforge.net/scripts/script.php?script_id=273) for
+getting set of tags
 
-1. Clone the `master` using the instructions below and checkout the
-   important note **OR**
-
-2. Clone the `minimal` using the same instructions and get going. No further
-   tweaking should be required. Feel free to add plugins and other settings
-   of your own choice.
 
 Installation
 ------------
 If you want to fetch `master` branch :
 
-    git clone -b master --single-branch https://github.com/vivekiitkgp/Dotfiles-vim.git ~/.vim
+    git clone -b master --single-branch https://github.com/ma08/Dotfiles-vim.git ~/.vim
 or if you want to fetch 'minimal' branch:
 
-    git clone -b minimal --single-branch https://github.com/vivekiitkgp/Dotfiles-vim.git ~/.vim
+    git clone -b minimal --single-branch https://github.com/ma08/Dotfiles-vim.git ~/.vim
 The common instructions then follow - 
 
     cd .vim
@@ -71,16 +58,25 @@ If however you do not want to use these plugins, then remove these submodules fr
     let g:airline#extensions#tmuxline#enabled = 1
     let g:airline#extensions#tabline#enabled = 1
 
-In order to save all this trouble, I have also added a `vimrc_stripped` file with relevant sections removed, so that you do not need an extra configuration. Please use this file directly.
 
-### (For `minimal` branch)
-* If you see strange characters in status line or improper appearance then please see the [FAQs] (https://github.com/bling/vim-airline/wiki/FAQ) for the `vim-airline` plugin.
+
+Colors
+----------
+Make sure that you have a terminal with 256 color support to get good colors in
+the terminal. Check the output of `tput colors`. Also run the
+256colors2.pl(search for it) to check if the desired colors are produced.
+
+For urxvt make sure you install rxvt-unicode256color package to get 256 colors.
+
+Set `t_Co=256` in vimrc accordingly for your term.
 
 Screenshot
 ----------
-The following is a screenshot of vim in terminal (using tmux) with Python Koans file open.
+The following is a screenshot of vim in urxvt (using tmux) with Python Koans file open.
 
-![vim](koans.png "Screenshot of Vim with Python Koans file")
+![vim](terminal_vim_notag.png "Screenshot of terminal with tags")
+![vim](terminal_vim_tag.png "Screenshot of terminal with tags")
+![vim](GUI_vim_tag.png "Screenshot of Vim with Python Koans file")
 
 Feedback
 --------
