@@ -15,6 +15,14 @@ cp ~/.vimperatorrc ~/.vimperatorrcdup
 cp ~/.vimrc ~/.vimrcdup
 cp ~/.gvimrc ~/.gvimrcdup
 cp ~/.i3status.conf ~/.i3status.confdup
+cp ~/.Xresources ~/.Xresourcesdup
+
+
+rm ~/.vimperatorrc
+rm ~/.vimrc
+rm ~/.Xresources
+rm ~/.gvimrc
+rm ~/.i3status.conf
 
 rm -rf ~/.vim
 rm -rf ~/.i3
@@ -23,10 +31,6 @@ rm -rf ~/.ncmpcpp
 rm -rf ~/.vimperator
 rm -rf ~/.config/ranger
 
-rm ~/.vimperatorrc
-rm ~/.vimrc
-rm ~/.gvimrc
-rm ~/.i3status.conf
 
 ln -s $(pwd)/ranger ~/.config/ranger
 ln -s $(pwd)/ncmpcpp ~/.ncmpcpp
@@ -35,6 +39,8 @@ ln -s $(pwd)/vimperator ~/.vimperator
 ln -s $(pwd)/vim ~/.vim
 ln -s $(pwd)/i3 ~/.i3
 
+ln -s $(pwd)/bashrc ~/.bashrc
+ln -s $(pwd)/Xresources ~/.Xresources
 ln -s $(pwd)/vim/.vimrc ~/.vimrc
 ln -s $(pwd)/vim/.gvimrc ~/.gvimrc
 ln -s $(pwd)/vimperator/.vimperatorrc ~/.vimperatorrc

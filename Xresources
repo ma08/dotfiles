@@ -1,0 +1,58 @@
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+URxvt.scrollBar: false
+URxvt.tabbed.autohide: true
+URXvt.tabbed.reopen-on-close: yes
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-Tab: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+URxvt.keysym.Control-Shift-L: perl:tabbedex:next_tab
+URxvt.keysym.Control-Shift-H: perl:tabbedex:prev_tab
+!URxvt.keysym.Control-Shift-J: perl:tabbedex:move_tab_left
+!URxvt.keysym.Control-Shift-K: perl:tabbedex:move_tab_right
+URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
+URxvt.tabbed.no-tabbedex-keys: true
+
+URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.keysym.Mod4-Escape: perl:keyboard-select:activate
+
+URxvt.font:xft:Monospace:pixelsize=12
+URxvt.boldfont:xft:Monospace-Bold:pixelsize=12
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0: #282828
+*color8: #928374
+! DarkRed + Red
+*color1: #cc241d
+*color9: #fb4934
+! DarkGreen + Green
+*color2: #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3: #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4: #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5: #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6: #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7: #a89984
+*color15: #ebdbb2
+
+rofi.highlightbg: #676d3d
