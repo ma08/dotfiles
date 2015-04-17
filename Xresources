@@ -5,7 +5,9 @@
 ! Source: https://github.com/morhetz/gruvbox-generalized
 ! Last Modified: 6 Sep 2014
 ! -----------------------------------------------------------------------------
+
 URxvt.scrollBar: false
+URxvt.modifier: super
 URxvt.tabbed.autohide: true
 URXvt.tabbed.reopen-on-close: yes
 URxvt.keysym.Control-t: perl:tabbedex:new_tab
@@ -18,11 +20,15 @@ URxvt.keysym.Control-Shift-H: perl:tabbedex:prev_tab
 URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
 URxvt.tabbed.no-tabbedex-keys: true
 
-URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex
+URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex,url-select
+URxvt.keysym.M-apostrophe: perl:url-select:select_next
+
+
+URxvt.clipboard.autocopy:   true
 URxvt.iso14755: False
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.keysym.Mod4-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-semicolon: perl:keyboard-select:activate
 
 URxvt.font:xft:Monospace:pixelsize=12
 URxvt.boldfont:xft:Monospace-Bold:pixelsize=12
