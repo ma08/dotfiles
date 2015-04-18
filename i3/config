@@ -335,8 +335,8 @@ client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 
-for_window [class="^.*"] border pixel 0
-for_window [class="(?i)urxvt"] border pixel 3
+for_window [class="^.*"] border pixel 3
+#for_window [class="(?i)urxvt"] border pixel 3
 gaps inner 10 
 gaps outer 4
 
