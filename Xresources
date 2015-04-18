@@ -5,6 +5,8 @@
 ! Source: https://github.com/morhetz/gruvbox-generalized
 ! Last Modified: 6 Sep 2014
 ! -----------------------------------------------------------------------------
+URxvt.transparent:   true
+URxvt.shading:       10
 
 URxvt.scrollBar: false
 URxvt.modifier: super
