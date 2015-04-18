@@ -17,3 +17,5 @@ the setup process.
 
 Look into install.sh to get an idea of the setup (regarding symlinks and git
     submodules for vim plugins). 
+
+![alt tag](screen.png)
