@@ -306,6 +306,7 @@ assign [class="Rhythmbox"] 2
 assign [class="Linuxdcpp"] 10
 
 # startup programs
+exec --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id xautolock -time 10 -detectsleep -locker "~/.i3/xkcd_i3lock.py" -notify 10 -notifier "~/.i3/bark.sh" -corners -+00 -cornerdelay 10 -cornerredelay 10 &
 exec --no-startup-id feh --bg-center ~/pro/dotfiles/2.jpg
 exec --no-startup-id ~/.i3/ram.sh
