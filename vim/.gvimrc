@@ -6,6 +6,7 @@ set guioptions-=L
 set guioptions+=a 
 set guioptions-=m
 colorscheme gruvbox
+set guifont=Ubuntu\ Mono\ derivative\ Powerline
 "let g:molokai_original = 1
 "let g:rehash256=1
 "set background=dark

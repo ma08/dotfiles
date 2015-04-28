@@ -11,15 +11,15 @@ set wrapscan
 
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
-    set background=dark
+    "set background=dark
 endif
 
 if $COLORTERM == 'rxvt-xpm'
     set t_Co=256
-    set background=dark
+    "set background=dark
 endif
 
-set background=dark
+"set background=dark
 " Set syntax if terminal supports colors
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
     set t_Co=256
