@@ -13,6 +13,7 @@
 
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
+show_marks yes
 
 set $mod Mod4
 set $goHome ~/.i3/goHome.py
@@ -89,6 +90,8 @@ bindsym $mod+Control+h workspace prev
 bindsym $mod+Control+l workspace next
 
 
+bindsym $mod+i workspace prev
+bindsym $mod+o workspace next
 
 
 
@@ -112,11 +115,20 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
-#bindsym $mod+g fullscreen global
+
+bindsym $mod+g [con_mark="foo"] focus
+
+bindsym $mod+Mod1+a mark a
+
+bindsym $mod+Control+v [class="URxvt" title="VIM"] focus
+bindsym $mod+Control+b [class="Firefox" title="Vimperator"] focus
+#bindsym $mod+Control+b [class="Tor Browser" title="Vimperator"] focus
+bindsym $mod+Shift+s move scratchpad
+bindsym $mod+s scratchpad show
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
+#bindsym $mod+Shift+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -232,6 +244,7 @@ bar {
     inactive_workspace #586e75 #93a1a1 #002b36
     urgent_workspace #d33682 #d33682 #fdf6e3
   }
+  #height 25
 }
 
 # colors
@@ -272,7 +285,9 @@ bindsym XF86Explorer exec google-chrome
 bindsym XF86Mail exec thunderbird -compose
 bindsym XF86HomePage exec nemo
 
-bindsym $mod+o exec notify-send -t 100 $(xprop -id `xdotool getactivewindow` | grep WM_CLASS | cut -d '"' -f4) 
+bindsym $mod+Shift+o exec notify-send -t 100 $(xprop -id `xdotool getactivewindow` | grep WM_CLASS | cut -d '"' -f4) 
+#bindsym $mod+Shift+o exec notify-send -t 100 "$(xprop -id `xdotool getactivewindow` | grep WM_NAME | tail -n 1 | cut -d '"' -f2)" 
+#bindsym $mod+Shift+o exec xprop -id `xdotool getactivewindow`  > ~/out.txt 
 
 
 #assign [class="Google-chrome"] 8
@@ -292,7 +307,7 @@ assign [class="Linuxdcpp"] 10
 
 # startup programs
 exec --no-startup-id xautolock -time 10 -detectsleep -locker "~/.i3/xkcd_i3lock.py" -notify 10 -notifier "~/.i3/bark.sh" -corners -+00 -cornerdelay 10 -cornerredelay 10 &
-exec --no-startup-id feh --bg-center ~/Pictures/Untitled.png 
+exec --no-startup-id feh --bg-center ~/pro/dotfiles/2.jpg
 exec --no-startup-id ~/.i3/ram.sh
 #exec --no-startup-id i3-msg 'workspace 1; exec wicd-client'
 exec --no-startup-id exec nm-applet
@@ -377,4 +392,5 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-smart_borders on
+smart_gaps on
+#smart_borders on

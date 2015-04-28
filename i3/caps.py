@@ -93,5 +93,9 @@ if __name__ == '__main__':
         caps_status=p2.communicate()[0][0:-1]
         j.insert(0,{'full_text':"Caps Lock "+caps_status ,'name':'Caps_Lock', 'color':lock_dic[caps_status]})
         j.insert(0,{'full_text':"NP: "+now_playing[0][:-1] ,'name':'now_playing', 'color':'#E6BB1D'})
+        j[-2]['color']="#E6BB1D"
+        #j[-1]['color']="#E6BB1D"
+        #j[-3]['color']="#E6BB1D"
+        #print(j[-2])
         # and echo back new encoded json
         print_line(prefix+json.dumps(j))
