@@ -6,7 +6,7 @@
 ! Last Modified: 6 Sep 2014
 ! -----------------------------------------------------------------------------
 URxvt.transparent:   true
-URxvt.shading:       10
+URxvt.shading:       25
 
 URxvt.scrollBar: false
 URxvt.modifier: super
@@ -32,8 +32,11 @@ URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.keysym.M-semicolon: perl:keyboard-select:activate
 
-URxvt.font:xft:Monospace:pixelsize=12
-URxvt.boldfont:xft:Monospace-Bold:pixelsize=12
+URxvt.letterSpace: -1
+URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=14
+URxvt.boldfont:xft:Ubuntu Mono derivative Powerline Bold:pixelsize=15
+!URxvt.italicFont: xft:Droid Sans Mono Slashed:pixelsize=9:Italic
+!URxvt.boldfont:xft:Monospace-Bold:pixelsize=12
 ! hard contrast: *background: #1d2021
 *background: #282828
 ! soft contrast: *background: #32302f
