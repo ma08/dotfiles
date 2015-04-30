@@ -189,6 +189,8 @@ bindsym $mod+Shift+Control+l move container to workspace next; workspace next
 bindsym $mod+Shift+Control+k move container to workspace prev; workspace prev
 bindsym $mod+Shift+Control+h move container to workspace prev; workspace prev
 
+bindsym $mod+m move container to workspace next; workspace next
+bindsym $mod+n move container to workspace prev; workspace prev
 
 # move workspace between outputs
 #bindsym $mod+y move workspace to output left
@@ -275,7 +277,7 @@ for_window [class="I3-exit"] floating enable border normal
 #go(po) home
 bindsym $mod+Delete exec python ~/.i3/i3-exit.py
 bindsym $mod+p exec ~/.i3/goHome.sh
-bindsym $mod+n exec killall notify-osd
+bindsym $mod+Shift+n exec killall notify-osd
 #the process will be created when a new notification is received
 #so only the present notification is removed. AFAIK
 
