@@ -1,7 +1,8 @@
 call pathogen#infect()
 runtime macros/matchit.vim
+"set termencoding=latin1
 :Helptags
-":!ctags -R .
+":!ctags -R r
 filetype on 
 filetype plugin indent on
 filetype plugin on
@@ -128,10 +129,25 @@ set spellfile=~/.vim/spell/en.utf-8.add
 "
 "nnoremap <tab> <C-w>
 "nnoremap <tab><tab> <C-w><C-w>
-map <silent> <A-h> <C-w><
-map <silent> <A-k> <C-W>-
-map <silent> <A-j> <C-W>+
-map <silent> <A-l> <C-w>>
+nnoremap <silent> <A-h> <C-w><
+nnoremap <silent> <A-k> <C-W>-
+nnoremap <silent> <A-j> <C-W>+
+nnoremap <silent> <A-l> <C-w>>
+function! Altmap(char)
+  if has('gui_running') | return ' <A-'.a:char.'> ' | else | return ' <Esc>'.a:char.' '|endif
+endfunction
+if $TERM == 'rxvt-unicode-256color'&&!has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    autocmd InsertEnter * set timeoutlen=400
+    autocmd InsertLeave * set timeoutlen=2000
+  augroup END
+  execute 'nnoremap <silent>'.Altmap('h').'<C-w><'
+  execute 'nnoremap <silent>'.Altmap('k').'<C-w>-'
+  execute 'nnoremap <silent>'.Altmap('j').'<C-w>+'
+  execute 'nnoremap <silent>'.Altmap('l').'<C-w>>'
+endif
 set wrap
 if has('statusline')
   set laststatus=2
@@ -164,9 +180,11 @@ nnoremap <F5> :TlistToggle<CR>
 "inoremap <C-t> <Esc>:tabnew<Space>
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-"tab navigation
-nnoremap <S-h> gT
-nnoremap <S-l> gt
+
+"buffer navigation
+
+nnoremap <S-h> :bprevious<CR>
+nnoremap <S-l> :bnext<CR>
 
 set lazyredraw
 " set confirm

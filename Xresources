@@ -7,9 +7,10 @@
 ! -----------------------------------------------------------------------------
 URxvt.transparent:   true
 URxvt.shading:       25
+!URxvt.meta8: true
 
 URxvt.scrollBar: false
-URxvt.modifier: super
+!URxvt.modifier: super
 URxvt.tabbed.autohide: true
 URXvt.tabbed.reopen-on-close: yes
 URxvt.keysym.Control-t: perl:tabbedex:new_tab
@@ -23,14 +24,14 @@ URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
 URxvt.tabbed.no-tabbedex-keys: true
 
 URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex,url-select
-URxvt.keysym.M-apostrophe: perl:url-select:select_next
+URxvt.keysym.Mod4-apostrophe: perl:url-select:select_next
 
 
 URxvt.clipboard.autocopy:   true
-URxvt.iso14755: False
+!URxvt.iso14755: False
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.keysym.M-semicolon: perl:keyboard-select:activate
+URxvt.keysym.Mod4-semicolon: perl:keyboard-select:activate
 
 URxvt.letterSpace: -1
 URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=14
