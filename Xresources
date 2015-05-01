@@ -28,7 +28,7 @@ URxvt.keysym.Mod4-apostrophe: perl:url-select:select_next
 
 
 URxvt.clipboard.autocopy:   true
-!URxvt.iso14755: False
+URxvt.iso14755: False
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.keysym.Mod4-semicolon: perl:keyboard-select:activate
@@ -68,3 +68,4 @@ URxvt.boldfont:xft:Ubuntu Mono derivative Powerline Bold:pixelsize=15
 *color15: #ebdbb2
 
 rofi.highlightbg: #676d3d
+rofi.opacity: 50

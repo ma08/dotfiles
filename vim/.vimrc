@@ -284,6 +284,7 @@ let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 
 hi MatchParen cterm=none ctermbg=none ctermfg=red
 hi MatchParen gui=NONE guibg=NONE guifg=red
+hi Normal ctermbg=none
 "hi Cursor gui=NONE guifg=#190707 guibg=#11BA0B
 nnoremap <Leader>f :NERDTreeTabsToggle<CR>
 
