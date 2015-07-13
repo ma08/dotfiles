@@ -93,7 +93,12 @@ bindsym $mod+Control+l workspace next
 bindsym $mod+i workspace prev
 bindsym $mod+o workspace next
 
+# reload the configuration file
+bindsym $mod+Shift+b reload
 
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -122,6 +127,7 @@ bindsym $mod+Mod1+a mark a
 
 bindsym $mod+Control+v [class="URxvt" title="VIM"] focus
 bindsym $mod+Control+b [class="Firefox" title="Vimperator"] focus
+bindsym $mod+Control+m [class="URxvt" instance="ncmpcpp-playlist"] focus
 #bindsym $mod+Control+b [class="Tor Browser" title="Vimperator"] focus
 bindsym $mod+Shift+s move scratchpad
 bindsym $mod+s scratchpad show
@@ -195,10 +201,6 @@ bindsym $mod+n move container to workspace prev; workspace prev
 # move workspace between outputs
 #bindsym $mod+y move workspace to output left
 
-# reload the configuration file
-bindsym $mod+Shift+b reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -249,22 +251,23 @@ bar {
   #height 25
 }
 
+bindsym $mod+Shift+a exec ~/.i3/audio-device-switch.sh
 # colors
 
 # volume
-bindsym XF86AudioRaiseVolume exec amixer sset Master 2%+ && killall -USR1 i3blocks
-bindsym Shift+Control+Up exec amixer sset Master 2%+ && killall -USR1 i3blocks
-bindsym XF86AudioLowerVolume exec amixer sset Master 2%- && killall -USR1 i3blocks
-bindsym Shift+Control+Down exec amixer sset Master 2%- && killall -USR1 i3blocks
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+ && killall -USR1 i3status
+bindsym Shift+Control+Up exec amixer -D pulse sset Master 2%+ && killall -USR1 i3status
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%- && killall -USR1 i3status
+bindsym Shift+Control+Down exec amixer -D pulse sset Master 2%- && killall -USR1 i3status
+bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3status
 bindsym $mod+Control+Shift+Up exec xbacklight -set $(echo `xbacklight -get`+20|bc)
 bindsym $mod+Control+Shift+Down exec xbacklight -set $(echo `xbacklight -get`-5|bc)
 
 
 
 #media next and prev
-bindsym Shift+Control+j exec ncmpcpp next
-bindsym Shift+Control+k exec ncmpcpp prev
+bindsym Shift+Control+j exec ncmpcpp next && killall -USR1 i3status
+bindsym Shift+Control+k exec ncmpcpp prev && killall -USR1 i3status
 bindsym Shift+Control+space exec ncmpcpp toggle
 
 #launch applications
@@ -308,27 +311,29 @@ assign [class="Rhythmbox"] 2
 assign [class="Linuxdcpp"] 10
 
 # startup programs
+exec --no-startup-id mpd
 exec --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id xautolock -time 10 -detectsleep -locker "~/.i3/xkcd_i3lock.py" -notify 10 -notifier "~/.i3/bark.sh" -corners -+00 -cornerdelay 10 -cornerredelay 10 &
+exec --no-startup-id xautolock -time 10 -detectsleep -locker "~/.i3/xkcd_i3lock.py" -notify 10 -notifier "~/.i3/bark.sh" -corners -+00 -cornerdelay 10  &
 exec --no-startup-id feh --bg-center ~/pro/dotfiles/2.jpg
 exec --no-startup-id ~/.i3/ram.sh
 #exec --no-startup-id i3-msg 'workspace 1; exec wicd-client'
 exec --no-startup-id exec nm-applet
 exec --no-startup-id compton -CGb 
 exec --no-startup-id i3-msg 'workspace 1; exec gnome-system-monitor'
-exec --no-startup-id i3-msg 'workspace 2; exec urxvt -e ncmpcpp -s visualizer'
-exec --no-startup-id i3-msg 'workspace 2; exec urxvt -e ncmpcpp -s browser'
+exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist -e ncmpcpp -s playlist'
+exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-visualizer -e ncmpcpp -s visualizer'
 #exec --no-startup-id i3-msg 'workspace 2; exec rhythmbox'
 exec --no-startup-id i3-msg 'workspace 3; exec urxvt -cd ~/pro'
 exec --no-startup-id i3-msg 'workspace 4; exec firefox'
-exec --no-startup-id i3-msg 'workspace 4; exec ~/Desktop/tor-browser_en-US/start-tor-browser'
+#exec --no-startup-id i3-msg 'workspace 4; exec ~/Desktop/tor-browser_en-US/start-tor-browser'
 #exec --no-startup-id i3-msg 'workspace 8; exec google-chrome'
 exec --no-startup-id i3-msg 'workspace 6; exec urxvt -cd ~/pro -e ranger'
 exec --no-startup-id i3-msg 'workspace 5; exec pidgin'
 exec --no-startup-id i3-msg 'workspace 9; exec nautilus'
 exec --no-startup-id i3-msg 'workspace 10; exec linuxdcpp'
 exec --no-startup-id gnome-sound-applet
-exec --no-startup-id gnome-settings-daemon
+#exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id unity-settings-daemon
 exec --no-startup-id  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 #
 #exec pulseaudio --start
@@ -347,6 +352,8 @@ exec --no-startup-id  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-age
 # open certain windows in floating mode
 for_window [class="(?i)gnome-calculator"] floating enable
 for_window [class="Gcalctool"] floating enable
+for_window [class="URxvt" instance="ncmpcpp-visualizer"] move scratchpad
+#for_window [class="URxvt" instance="ncmpcpp-playlist"] move scratchpad
 client.focused #859900 #859900 #fdf6e3 #859900
 client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
 client.unfocused #073642 #073642 #93a1a1 #586e75
