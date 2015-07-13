@@ -29,6 +29,8 @@ import re
 import json
 import time
 
+NOW_PLAYING_STATUS = "mpc | head -2 | tail -1 | awk '{print $1;}'"
+
 I3STATUS_CMD = 'i3status'
 
 NOW_PLAYING_CMD = "mpc current -f '%title%'"
@@ -87,12 +89,14 @@ if __name__ == '__main__':
         #j.insert(0,{'full_text':'CAPS '+caps_status,'name':'Caps_Lock', 'color':lock_dic[caps_status]})
         p2=Popen(CAPSLOCK_CMD,stdout=PIPE,shell=True)
         p3=Popen(NOW_PLAYING_CMD,stdout=PIPE,shell=True)
-        now_playing=p3.communicate()
+        p4=Popen(NOW_PLAYING_STATUS,stdout=PIPE,shell=True)
+        now_playing=p3.communicate()[0][:-1]
+        now_playing_status=p4.communicate()[0][:-1]
         #print("fooooooooooooo")
         #print(now_playing)
         caps_status=p2.communicate()[0][0:-1]
         j.insert(0,{'full_text':"Caps Lock "+caps_status ,'name':'Caps_Lock', 'color':lock_dic[caps_status]})
-        j.insert(0,{'full_text':"NP: "+now_playing[0][:-1] ,'name':'now_playing', 'color':'#E6BB1D'})
+        j.insert(0,{'full_text':"Now Playing: "+now_playing+" "+now_playing_status ,'name':'now_playing', 'color':'#E6BB1D'})
         j[-2]['color']="#E6BB1D"
         #j[-1]['color']="#E6BB1D"
         #j[-3]['color']="#E6BB1D"

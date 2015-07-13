@@ -268,7 +268,7 @@ bindsym $mod+Control+Shift+Down exec xbacklight -set $(echo `xbacklight -get`-5|
 #media next and prev
 bindsym Shift+Control+j exec ncmpcpp next && killall -USR1 i3status
 bindsym Shift+Control+k exec ncmpcpp prev && killall -USR1 i3status
-bindsym Shift+Control+space exec ncmpcpp toggle
+bindsym Shift+Control+space exec ncmpcpp toggle && killall -USR1 i3status
 
 #launch applications
 bindsym $mod+Shift+f exec firefox
