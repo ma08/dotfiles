@@ -149,6 +149,8 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+c focus child
 
+bindsym $mod+Shift+Control+c exec xmodmap ~/.Xmodmap
+
 # switch to workspace
 #bindsym $mod+1 exec $control go 1
 #bindsym $mod+2 exec $control go 2

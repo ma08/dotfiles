@@ -34,8 +34,9 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.keysym.Mod4-semicolon: perl:keyboard-select:activate
 
 URxvt.letterSpace: -1
-URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=14
-URxvt.boldfont:xft:Ubuntu Mono derivative Powerline Bold:pixelsize=15
+URxvt.font: xft:Inconsolata for Powerline:pixelsize=15:antialias=true:hinting=true
+!URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=14
+!URxvt.boldfont:xft:Ubuntu Mono derivative Powerline Bold:pixelsize=15
 !URxvt.italicFont: xft:Droid Sans Mono Slashed:pixelsize=9:Italic
 !URxvt.boldfont:xft:Monospace-Bold:pixelsize=12
 ! hard contrast: *background: #1d2021
@@ -68,4 +69,4 @@ URxvt.boldfont:xft:Ubuntu Mono derivative Powerline Bold:pixelsize=15
 *color15: #ebdbb2
 
 rofi.highlightbg: #676d3d
-rofi.opacity: 50
+rofi.opacity: 80
