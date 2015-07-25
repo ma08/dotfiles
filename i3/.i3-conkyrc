@@ -1,0 +1,26 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+update_interval 2.0
+total_run_times 0
+short_units yes
+if_up_strictness address
+use_spacer left
+override_utf8_locale yes
+cpu_avg_samples 2
+
+TEXT
+[
+    { "full_text" : "${if_up wlp4s0}${wireless_link_qual_perc wlp4s0}% (${wireless_essid wlp4s0})${else}  no wifi${endif} " , "color" : "\#f2f0ec" },
+    { "full_text" : " ${execi 5 python ~/.i3/mpd-nowplaying.py} " , "color" : "\#f2f0ec" },
+    { "full_text" : " ${execi 5 python ~/.i3/disk-free.py} " , "color" : "\#f2f0ec" },
+    { "full_text" : "   CPU ${cpu cpu0}% " , "color" : "\#f2f0ec" },
+    { "full_text" : "   RAM ${mem}(${memperc}%) " , "color" : ${if_match ${memperc}<60}"\#f2f0ec"${else}"\#f2777a"${endif} },
+    { "full_text" : "    ${execi 5  acpi -b |awk -F ": " '{print $2}' | sed 's/Unknown/F/g;s/Charging/C/g;s/Discharging/D/g;s/remaining//g;s/until charged//g;s/discharging at.*//g'}  " , "color" : "\#f2f0ec" },
+    { "full_text" : "   ${time %d %B %Y} " , "color" : "\#f2f0ec" },
+    { "full_text" : "   ${time %H:%M:%S} " , "color" : "\#f2f0ec" },
+    { "full_text" : "  ${execi 1  pactl list sinks | perl -000ne 'if(/RUNNING/){/(Volume:.*)/; print "RUNNING $1\n"}else{if(/#?/){/(Volume:.*)/; print "$1\n"}}'  | sort -k1 | grep -o [[:alnum:]]*% | head -n1}", "color" : "\#f2f0ec" },
+    { "full_text" : "" , "color" : "\#f2f0ec" }
+],
