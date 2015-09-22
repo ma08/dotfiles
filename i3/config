@@ -13,7 +13,6 @@
 
 workspace_auto_back_and_forth yes
 workspace_layout tabbed
-show_marks yes
 
 set $mod Mod4
 set $goHome ~/.i3/goHome.py
@@ -44,7 +43,8 @@ bindsym $mod+Shift+w exec kill -9 $(xprop -id $(xdpyinfo | grep focus | cut -f4 
 # start dmenu (a program launcher)
 #bindsym $mod+p exec $control open
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 400  -bw 0 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -134,6 +134,7 @@ bindsym $mod+s scratchpad show
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+t layout tabbed
+bindsym $mod+u layout stacked
 #bindsym $mod+Shift+t layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -236,16 +237,21 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar  {
-        id bar-1
+bar {
+  id bar-1
         status_command ~/.i3/i3status-conky-launcher.sh
         position top
 #font pango:Inconsolata for Powerline Bold 10    
- font pango:Font Awesome 8.5    
-        colors {
-            background #2b303b
-            focused_workspace #4c7899 #8fa1b3 #ffffff
-        }
+ font pango:Font Awesome 8
+  colors {
+    separator #dc322f
+    background #002b36
+    statusline #268bd2
+    focused_workspace #fdf6e3 #859900 #fdf6e3
+    active_workspace #fdf6e3 #6c71c4 #fdf6e3
+    inactive_workspace #586e75 #93a1a1 #002b36
+    urgent_workspace #d33682 #d33682 #fdf6e3
+  }
 }
 
 bindsym $mod+Shift+a exec ~/.i3/audio-device-switch.sh
@@ -261,19 +267,25 @@ bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%- && killall -SI
 #bindsym Shift+Control+Down exec amixer -D pulse sset Master 2%- && killall -USR1 i3status
 bindsym Shift+Control+Down exec amixer -D pulse sset Master 2%- && killall -SIGUSR1 conky
 #bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3status
-bindsym XF86AudioMute exec amixer sset Master toggle && killall -SIGUSR1 conky
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && killall -SIGUSR1 conky
 bindsym $mod+Control+Shift+Up exec xbacklight -set $(echo `xbacklight -get`+20|bc)
 bindsym $mod+Control+Shift+Down exec xbacklight -set $(echo `xbacklight -get`-5|bc)
+
+# Media player controls
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
 
 
 
 #media next and prev
 #bindsym Shift+Control+j exec ncmpcpp next && killall -USR1 i3status
-bindsym Shift+Control+j exec ncmpcpp next && killall -SIGUSR1 conky
+bindsym Shift+Control+j exec mpc next && killall -SIGUSR1 conky && killall notify-osd && notify-send "$(mpc current -f '%title%')" "$(mpc current -f '%album%')"
 #bindsym Shift+Control+k exec ncmpcpp prev && killall -USR1 i3status
-bindsym Shift+Control+k exec ncmpcpp prev && killall -SIGUSR1 conky
+bindsym Shift+Control+k exec mpc prev && killall -SIGUSR1 conky && killall notify-osd && notify-send "$(mpc current -f '%title%')" "$(mpc current -f '%album%')"
 #bindsym Shift+Control+space exec ncmpcpp toggle && killall -USR1 i3status
-bindsym Shift+Control+space exec ncmpcpp toggle && killall -SIGUSR1 conky
+bindsym Shift+Control+space exec mpc toggle && killall -SIGUSR1 conky
 
 #launch applications
 bindsym $mod+Shift+f exec firefox
@@ -318,13 +330,14 @@ assign [class="Linuxdcpp"] 10
 # startup programs
 exec --no-startup-id mpd
 exec --no-startup-id xautolock -time 10 -detectsleep -locker "~/.i3/xkcd_i3lock.py" -notify 10 -notifier "~/.i3/bark.sh" -corners -000 -cornerdelay 10  &
-exec --no-startup-id feh --bg-center ~/pro/dotfiles/2.jpg
+exec --no-startup-id feh --bg-scale ~/Desktop/polygonWallpaper.png
 exec --no-startup-id ~/.i3/ram.sh
 #exec --no-startup-id i3-msg 'workspace 1; exec wicd-client'
 exec --no-startup-id exec nm-applet
 exec --no-startup-id compton -CGb 
 exec --no-startup-id i3-msg 'workspace 1; exec gnome-system-monitor'
 exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist -e ncmpcpp -s playlist'
+exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist-scratchpad -e ncmpcpp -s playlist'
 exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-visualizer -e ncmpcpp -s visualizer'
 #exec --no-startup-id i3-msg 'workspace 2; exec rhythmbox'
 exec --no-startup-id i3-msg 'workspace 3; exec urxvt -cd ~/pro'
@@ -358,18 +371,16 @@ exec --no-startup-id xmodmap ~/.Xmodmap
 for_window [class="(?i)gnome-calculator"] floating enable
 for_window [class="Gcalctool"] floating enable
 for_window [class="URxvt" instance="ncmpcpp-visualizer"] move scratchpad
+for_window [class="URxvt" instance="ncmpcpp-playlist-scratchpad"] move scratchpad
 #for_window [class="URxvt" instance="ncmpcpp-playlist"] move scratchpad
-client.focused #859900 #859900 #fdf6e3 #859900
-client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-client.unfocused #073642 #073642 #93a1a1 #586e75
-client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 2
 for_window [class="mplayer2"] border pixel 1
-#for_window [class="(?i)urxvt"] border pixel 3
+for_window [class="(?i)urxvt"] border pixel 1
 gaps inner 10 
 gaps outer 4
+show_marks yes
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -377,36 +388,41 @@ set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+		bindsym o      mode "$mode_gaps_outer"
+		bindsym i      mode "$mode_gaps_inner"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
+		bindsym plus  gaps inner current plus 5
+		bindsym minus gaps inner current minus 5
+		bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+		bindsym Shift+plus  gaps inner all plus 5
+		bindsym Shift+minus gaps inner all minus 5
+		bindsym Shift+0     gaps inner all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
+		bindsym plus  gaps outer current plus 5
+		bindsym minus gaps outer current minus 5
+		bindsym 0     gaps outer current set 0
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+		bindsym Shift+plus  gaps outer all plus 5
+		bindsym Shift+minus gaps outer all minus 5
+		bindsym Shift+0     gaps outer all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 smart_gaps on
-#smart_borders on
+smart_borders on
+
+client.focused #859900 #859900 #fdf6e3 #859900
+client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
+client.unfocused #073642 #073642 #93a1a1 #586e75
+client.urgent #d33682 #d33682 #fdf6e3 #dc322f
