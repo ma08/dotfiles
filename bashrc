@@ -37,9 +37,17 @@ function cdDBMS
 {
   command cd /home/sourya/pro/6thsem/DBMS
 }
+function cdbtp
+{
+  command cd /home/sourya/pro/btp/btp-crypto/
+}
 function cdblog
 {
   command cd ~/pro/blogtesting/blog/
+}
+function torsshchatterbox
+{
+  command ssh -o ProxyCommand='nc -x 127.0.0.1:9150 %h %p' azureuser@chatterbox2.cloudapp.net
 }
 function gitstore
 {
@@ -54,3 +62,6 @@ function settime
 sudo hwclock --set --date "$1"
 sudo hwclock --hctosys
 }
+
+xmodmap ~/.Xmodmap
+source /usr/share/bash-completion/completions/git
