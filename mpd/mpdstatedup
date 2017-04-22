@@ -1,0 +1,157 @@
+sw_volume: 100
+audio_device_state:1:mpd alsamixer-output
+audio_device_state:1:My HTTP Stream
+audio_device_state:1:fifo_visualizer
+state: play
+current: 103
+time: 239
+random: 0
+repeat: 1
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:English/singleTracks/02 Way Down in the Hole.mp3
+1:English/500 Of The Best All Time Rock Songs/456 -  Best Songs Of All Time - The Doors - The End.Mp3
+2:English/500 Of The Best All Time Rock Songs/078 -  Best Songs Of All Time - Jimi Hendrix - All Along The Watchtower.Mp3
+3:English/100 Greatest Rock Guitar Solos/011) Jimi Hendrix - Voodoo Child (Slight Return)  _2.2_™.mp3
+4:English/100 Greatest Rock Guitar Solos/032) Jimi Hendrix - Machine Gun  _2.2_™.mp3
+5:English/singleTracks/05 Major Lazer Feat M & DJ Snake - Lean On.mp3
+6:English/Guardians of the Galaxy (2014) OST Deluxe FLAC [f1uk3r]/Guardians of the Galaxy [CD1] Awesome Mix Vol.1/04 - David Bowie - Moonage Daydream.flac
+7:English/Led Zeppelin - Studio Discography - Vinyl Rip [FLAC]/1969 - Led Zeppelin II/Side A/A1 - Whole Lotta Love.flac
+8:English/Led Zeppelin - Studio Discography - Vinyl Rip [FLAC]/1969 - Led Zeppelin II/Side B/B1 - Heartbreaker.flac
+9:English/singleTracks/Imagine Dragons - Radioactive.mp3
+10:English/100 Greatest Rock Guitar Solos/004) Pink Floyd - Comfortably Numb  _2.2_™.mp3
+11:English/Pink floyd/Echoes - The Best Of Pink Floyd/12 - High Hopes.mp3
+12:English/Pink floyd/Echoes - The Best Of Pink Floyd/10 - Wish You Were Here.mp3
+13:English/Pink floyd/Echoes - The Best Of Pink Floyd/01 - Astronomy Domine.mp3
+14:English/Pink floyd/Echoes - The Best Of Pink Floyd/03 - The Fletcher Memorial Home.mp3
+15:English/Pink floyd/Echoes - The Best Of Pink Floyd/05 - When The Tigers Broke Free.mp3
+16:English/Pink floyd/Echoes - The Best Of Pink Floyd/01 - Shine On You Crazy Diamond, Pts. 1-5.mp3
+17:English/100 Greatest Rock Guitar Solos/003) Lynyrd Skynyrd - Freebird  _2.2_™.mp3
+18:English/singleTracks/310 - Iron Man - Black Sabbath .flac
+19:English/Led Zeppelin - Studio Discography - Vinyl Rip [FLAC]/1971 - Led Zeppelin IV/Side A/A4 - Stairway To Heaven.flac
+20:English/singleTracks/08 - Radioactive Toy.flac
+21:English/singleTracks/30 Sia - Chandelier.mp3
+22:English/500 Of The Best All Time Rock Songs/239 -  Best Songs Of All Time - David Bowie - Space Oddity.Mp3
+23:English/singleTracks/Space Oddity  The Secret Life Of Walter Mitty [mp3bi.com].mp3
+24:English/singleTracks/[Royce] Imagine Dragons - Demons (Official Music Video).mp3
+25:English/singleTracks/~Johnny Cash - Hurt~ _Full Video_High Quality_Lyrics In Info-sTxX9-hd_hw.mp3
+26:English/singleTracks/The Hobbit - Far Over the Misty Mountains Cold (Extended Cover)-P8ymgFyzbDo.mp3
+27:English/singleTracks/54776-let-her-go-passenger--1411580961.mp3
+28:English/singleTracks/03 - It's Time.flac
+29:English/Pink floyd/1977 - Animals/03 - Pigs (Three Different Ones).mp3
+30:English/500 Of The Best All Time Rock Songs/354 -  Best Songs Of All Time - Pink Floyd - Shine On You Crazy Diamond.Mp3
+31:English/singleTracks/Lorde - Royals.mp3
+32:English/singleTracks/Katy Perry - Roar.mp3
+33:English/Slash - Back from Cali (feat. Myles Kennedy).mp3
+34:English/500 Of The Best All Time Rock Songs/029 -  Best Songs Of All Time - Aerosmith - Dream On.Mp3
+35:English/singleTracks/08 Mark Ronson Feat Bruno Mars - Uptown Funk.mp3
+36:Telugu/Mr.Nokia (2012) ~ 320 Kbps [Vader]/02 Oka oka jeevitham.mp3
+37:Telugu/OY/05 - Povodhe Prema.mp3
+38:Telugu/OK Bangaram (2015) 320 Kbps [silk]/04 - Maayedho Cheyyava [silk].mp3
+39:Telugu/OY/03 - Waiting For You.mp3
+40:Telugu/OY/01 - Oy! Oy!.mp3
+41:Telugu/Komaram Puli (2010)/01 - Power Star.mp3
+42:Telugu/Komaram Puli (2010)/02 - Amma Thale.mp3
+43:Telugu/Komaram Puli (2010)/04 - Maham Maye.mp3
+44:Telugu/SO Son of Satyamurthy (2015) FLAC 1024 Kbps Telugu Songs [silk]/04 - Come To The Party [silk].flac
+45:Telugu/Komaram Puli (2010)/05 - Dochey.mp3
+46:Telugu/SO Son of Satyamurthy (2015) FLAC 1024 Kbps Telugu Songs [silk]/03 - Super Machi [silk].flac
+47:Telugu/SO Son of Satyamurthy (2015) FLAC 1024 Kbps Telugu Songs [silk]/05 - Jaaruko [silk].flac
+48:Telugu/SO Son of Satyamurthy (2015) FLAC 1024 Kbps Telugu Songs [silk]/06 - Chalo Chalo Chalo.flac
+49:Telugu/SO Son of Satyamurthy (2015) FLAC 1024 Kbps Telugu Songs [silk]/01 - One & Two & Three [silk].flac
+50:Telugu/Asura (2015) 320 VBR [silk]/01 - Potettina Toorupu [silk].mp3
+51:Telugu/Asura (2015) 320 VBR [silk]/02 - Peru Teliyani [silk].mp3
+52:Telugu/Asura (2015) 320 VBR [silk]/03 - Yuddam Cheyara [silk].mp3
+53:Telugu/Asura (2015) 320 VBR [silk]/05 - Sukumaara [silk].mp3
+54:Telugu/Rangam (2011)/05 - Rangam - Masthish.mp3
+55:Telugu/Srimanthudu (2015) - FLAC 1024Kbps [Spock]/Srimanthuda.flac
+56:Telugu/Srimanthudu (2015) - FLAC 1024Kbps [Spock]/Jaago.flac
+57:Telugu/Raja Rani (2014) Telugu 320Kbps [silk]/01 - Hey Baby [silk].mp3
+58:Telugu/Raja Rani (2014) Telugu 320Kbps [silk]/05 - Oday Oday [silk].mp3
+59:Telugu/Raja Rani (2014) Telugu 320Kbps [silk]/06 - Vinave Vinave [silk].mp3
+60:Telugu/Raja Rani (2014) Telugu 320Kbps [silk]/07 - A Love Life [silk].mp3
+61:Telugu/Okkadu/05. Sahasam Swasaga [MNK].mp3
+62:Telugu/Sainikudu/02 - Maayeraa.mp3
+63:Telugu/Bangalore Days (2014) [Cipher]/Maangalyam-StarMusiQ.Com.mp3
+64:Telugu/Chandamama Kathalu (2014) ~ 320 VBR [Vader]/01-Chandamama Kathalu [Vader].mp3
+65:Telugu/Athadu (2005)/01. Adharaku [MNK].mp3
+66:Telugu/Bale Bale Magadivoy (2015) 320Kbps Telugu [Cipher]/02 - Endaro [www.AtoZmp3.in] [Cipher].mp3
+67:Telugu/Maari (2015) 320kbps Tamil [Cipher]/Donu_Donu_Donu-StarMusiQ.Com.mp3
+68:Telugu/yenthavadu gani/07. Neekem Kaavaalo Cheppu-(Desisongspk.In).mp3
+69:Telugu/Masaan/1 - Tu Kisi Rail Si - Masaan - [Songspk.CC].mp3
+70:Telugu/Masaan/2 - Mann Kasturi - Masaan - [Songspk.CC].mp3
+71:Telugu/Masaan/3 - Bhor - Masaan - [Songspk.CC].mp3
+72:Telugu/Raghuvaran B.Tech (2014) 320 VBR [silk]/01 - Chudandi Saaru [silk].mp3
+73:Telugu/Raghuvaran B.Tech (2014) 320 VBR [silk]/02 - Po Pove Yekantham [silk].mp3
+74:Telugu/Nenu Sailaja (2015) ~320Kbps/01 - Night Is Still Young [www.AtoZmp3.in].mp3
+75:Telugu/Nenu Sailaja (2015) ~320Kbps/02 - Crazy Feeling [www.AtoZmp3.in].mp3
+76:Telugu/Nenu Sailaja (2015) ~320Kbps/04 - Sailaja Sailaja [www.AtoZmp3.in].mp3
+77:Telugu/Nava Manmadhudu (2015) 320Kbps Telugu [Cipher]/01 - Nee Takkari Look Ke [www.AtoZmp3.in].mp3
+78:Telugu/Nava Manmadhudu (2015) 320Kbps Telugu [Cipher]/02 - Manasa Manasa [www.AtoZmp3.in].mp3
+79:Telugu/Nava Manmadhudu (2015) 320Kbps Telugu [Cipher]/03 - Emannavoo [www.AtoZmp3.in].mp3
+80:Telugu/Greeku Veerudu (2013)/01 - I Hate Love Stories.mp3
+81:Telugu/Greeku Veerudu (2013)/03 - O Naadu Washington.mp3
+82:Telugu/Nannaku Prematho (2015) ~320Kbps/01 - Follow Follow [www.AtoZmp3.in].mp3
+83:Telugu/Nannaku Prematho (2015) ~320Kbps/04 - Love Me Again [www.AtoZmp3.in].mp3
+84:Telugu/Maari (2015) 320kbps Tamil [Cipher]/Maari_Thara_Local-StarMusiQ.Com.mp3
+85:Telugu/Maari (2015) 320kbps Tamil [Cipher]/The_Maari_Swag-StarMusiQ.Com.mp3
+86:English/singleTracks/02 - Heropanti - Rabba [DJMaza.Info].mp3
+87:Telugu/Narasimha (1999)/06. Theme Music (Narasimha) [MNK].mp3
+88:Telugu/Anandam (2001)/Anandam [MNK].mp3
+89:Telugu/Andala Rakshasi (2012) 320Kbps [buys]/Ye Mantramo.mp3
+90:Telugu/Andala Rakshasi (2012) 320Kbps [buys]/Yemito.mp3
+91:Telugu/Johnny (2003)/Naaraju Gakura [MNK].mp3
+92:Telugu/Johnny (2003)/Ee Reyi [MNK].mp3
+93:Telugu/Kushi (2001)/05. Aduvari [MNK].mp3
+94:Telugu/Love Failure (2012) ~ 320 Kbps [Vader]/01 Parvathi Parvathi.mp3
+95:Telugu/Love Failure (2012) ~ 320 Kbps [Vader]/02 Inthajare Inthajare.mp3
+96:Telugu/Love Failure (2012) ~ 320 Kbps [Vader]/05 Inthajare Inthajare 2.mp3
+97:Telugu/Yevade Subramanyam (2015) 320 VBR [silk]/02 - Idhera [silk].mp3
+98:Telugu/Nuvvu Naku Nachav(2002)/05. O Priyatama [MNK].mp3
+99:Telugu/Nuvvu Naku Nachav(2002)/02. O Navuu Chalu [MNK].mp3
+100:Telugu/Dilwale [2015-FLAC] [khsitij]/Dilwale - 3 - Janam Janam [khsitij].flac
+101:Telugu/Oopiri (2016) 320Kbps Telugu [Cipher]/02 Oka Life [Cipher].mp3
+102:Telugu/Oopiri (2016) 320Kbps Telugu [Cipher]/07 Eppudu [Cipher].mp3
+103:Telugu/Soggade Chinni Nayana (2015) 320Kbps Telugu [Cipher]/01 - Dikka Dikka Dum [www.AtoZmp3.in].mp3
+104:Telugu/Soggade Chinni Nayana (2015) 320Kbps Telugu [Cipher]/06 - Soggade Chinni Nayana [www.AtoZmp3.in].mp3
+105:Telugu/GUNA___PRIYATHAMA.MP3
+106:Telugu/Jagadeka Veerudu Athilokasundari (1990)/01. Priyathama [MNK].mp3
+107:English/singleTracks/Lincoln Hawk-Everytime you walk away (Spletnica)  www.myfreemp3.biz .mp3
+108:English/singleTracks/Aha - Take On Me.mp3
+109:English/singleTracks/Chaos Chaos - Do You Feel It (RICK AND MORTY)-MH17AHIklCM.mp3
+110:English/singleTracks/07. Ima Robot - Greenback Boogie.mp3
+111:English/Michael Buble - Feeling Good.mp3
+112:English/singleTracks/03 John Newman - Love Me Again.mp3
+113:English/Misc Hits of the 1990s and 2000s/Nine Inch Nails - Hurt.flac
+114:English/Raghu Dixit/[xDR] Raghu Dixit - 01 - Hey Bhagwan.mp3
+115:English/singleTracks/Stealth-Judgement Day www.mp3lio.net .mp3
+116:Telugu/Aditya 369/Aditya369 - janavule.mp3
+117:English/500 Of The Best All Time Rock Songs/038 -  Best Songs Of All Time - Boston - More Than A Feeling.Mp3
+118:Telugu/Pallavinchava Naa Gonthulo - Kokilamma - SPB [LoudTronix.me].mp3
+119:English/singleTracks/01. Vande Maataram - Maa Tujhe Salam.mp3
+120:English/singleTracks/Lollipop Lagelu.mp3
+121:Telugu/Journey (2011) FLAC 1024Kbps [MNK]/02. Chitti Chitti [MNK].flac
+122:Telugu/Panjaa (2011) FLAC 1024 Kbps [MNK]/01. Panja [MNK].flac
+123:Telugu/Rudraveena/04.Nammaku Nammaku.mp3
+124:Telugu/Aapathbandhavudu (1992)/02. Oura Ammaka Chella [MNK].mp3
+125:Telugu/Gudumba Shankar (2004)/04. Chitti Nadumune [MNK].mp3
+126:Telugu/Gudumba Shankar (2004)/03. Chilakamma [MNK].mp3
+127:Telugu/Gudumba Shankar (2004)/06. Killi Killi [MNK].mp3
+128:English/Led Zeppelin - Studio Discography - Vinyl Rip [FLAC]/1970 - Led Zeppelin III/Side B/B1 - Gallows Pole.flac
+129:English/Eminem/Eminem - Discography [FLAC]/Eminem - Recovery - 2010- [FLAC (tracks+.cue)]/07. Not Afraid - Eminem.flac
+130:Telugu/Fitoor [2016-MP3-VBR-320Kbps] [khsitij]/02 - Fitoor - Yeh Fitoor Mera [khsitij].mp3
+131:Telugu/Tamasha - 320Kbps/Tum Saath Ho - 320Kbps.mp3
+132:English/100 Greatest Rock Guitar Solos/067) Michael Jackson feat. Eddie Van Halen - Beat It  _2.2_™.mp3
+133:English/Iron Maiden Discography FLAC/Iron Maiden 1998 Virtual XI _2.2_™/04 The Clansman.flac
+134:English/100 Greatest Rock Guitar Solos/056) Black Sabbath - War Pigs  _2.2_™.mp3
+135:Telugu/Yeto Vellipoyindhi Manasu (2012) ~ 320 VBR [Vader]/01 Yedhi Yedhi [Vader].mp3
+136:Telugu/Yeto Vellipoyindhi Manasu (2012) ~ 320 VBR [Vader]/04 Laayi Laayi [Vader].mp3
+137:Telugu/Yeto Vellipoyindhi Manasu (2012) ~ 320 VBR [Vader]/06 Yenthentha Dhooram [Vader].mp3
+138:Telugu/Yeto Vellipoyindhi Manasu (2012) ~ 320 VBR [Vader]/07 Ardhamayyindhinte Inthena [Vader].mp3
+139:Telugu/Kotha Bangaru Lokam/Nee Prashnalu.mp3
+140:English/Eminem/Eminem - Discography [FLAC]/Eminem - (Compilation) - 2005 - Curtain Call- The Hits (Deluxe Edition) [FLAC (tracks+.cue)]/Eminem [2005] Curtain Call- The Hits/Eminem - Curtain Call- The Hits - 05 - Stan.flac
+playlist_end
