@@ -45,7 +45,10 @@ bindsym $mod+Shift+w exec kill -9 $(xprop -id $(xdpyinfo | grep focus | cut -f4 
 #bindsym $mod+p exec $control open
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec rofi -show run
-bindsym $mod+d exec rofi -show run -lines 8 -eh 2 -width 100 -padding 400  -bw 0 
+bindsym $mod+d exec rofi -show run  -run-command "/bin/bash -i -c '{cmd}'"
+#bindsym $mod+d exec rofi -show run -run-list-command "~/pro/executable_scripts/alias.sh" -run-command "/bin/bash -i -c '{cmd}'"
+#bindsym $mod+d exec rofi -show -run-list-command ". ~/pro/executable_scripts/alias.sh" -run-command "/bin/bash -i -c '{cmd}'"  -lines 8 -eh 2 -width 100 -padding 400  -bw 0 
+
 #bindsym $mod+d exec rofi -dmenu
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -156,7 +159,7 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+c focus child
 
-bindsym $mod+Shift+Control+c exec xmodmap ~/.Xmodmap
+#bindsym $mod+Shift+Control+c exec xmodmap ~/.Xmodmap
 
 # switch to workspace
 #bindsym $mod+1 exec $control go 1
@@ -352,7 +355,7 @@ exec --no-startup-id feh --bg-scale ~/Pictures/RickandMorty/cnSx4vU.jpg
 exec --no-startup-id ~/.i3/ram.sh
 #exec --no-startup-id i3-msg 'workspace 1; exec wicd-client'
 exec --no-startup-id exec nm-applet
-exec --no-startup-id compton -CGb 
+#exec --no-startup-id compton -CGb 
 exec --no-startup-id i3-msg 'workspace 1; exec gnome-system-monitor'
 exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist -e ncmpcpp -s playlist'
 exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist-scratchpad -e ncmpcpp -s playlist'
@@ -395,9 +398,9 @@ for_window [class="URxvt" instance="ncmpcpp-playlist-scratchpad"] move scratchpa
 
 
 for_window [class="^.*"] border pixel 2
-for_window [class="mplayer2"] border pixel 1
-for_window [class="(?i)urxvt"] border pixel 4
-for_window [class="(?i)gnome-terminal"] border pixel 4
+#for_window [class="mplayer2"] border pixel 6
+#for_window [class="(?i)urxvt"] border pixel 10
+#for_window [class="(?i)gnome-terminal"] border pixel 4
 
 gaps inner 10 
 gaps outer 4
@@ -409,45 +412,55 @@ set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
-		bindsym o      mode "$mode_gaps_outer"
-		bindsym i      mode "$mode_gaps_inner"
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
 mode "$mode_gaps_inner" {
-		bindsym plus  gaps inner current plus 5
-		bindsym minus gaps inner current minus 5
-		bindsym 0     gaps inner current set 0
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
 
-		bindsym Shift+plus  gaps inner all plus 5
-		bindsym Shift+minus gaps inner all minus 5
-		bindsym Shift+0     gaps inner all set 0
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
 
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 mode "$mode_gaps_outer" {
-		bindsym plus  gaps outer current plus 5
-		bindsym minus gaps outer current minus 5
-		bindsym 0     gaps outer current set 0
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
 
-		bindsym Shift+plus  gaps outer all plus 5
-		bindsym Shift+minus gaps outer all minus 5
-		bindsym Shift+0     gaps outer all set 0
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
 
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
 smart_gaps on
 smart_borders on
 
-client.focused #859900 #859900 #fdf6e3 #859900
-client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-client.unfocused #073642 #073642 #93a1a1 #586e75
-client.urgent #d33682 #d33682 #fdf6e3 #dc322f
-#client.focused #859900 $transparent #fdf6e3 #859900
-#client.focused_inactive $transparent #073642 #eee8d5 #6c71c4
-#client.unfocused #073642 $transparent #93a1a1 #586e75
-#client.urgent #d33682 $transparent #fdf6e3 #dc322f
+
+##solarized
+#client.focused #859900 #859900 #fdf6e3 #859900
+#client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
+#client.unfocused #073642 #073642 #93a1a1 #586e75
+#client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+
+##slate theme
+#client.focused #586e75 #586e75 #fdf6e3 #268bd2
+#client.focused_inactive #073642 #073642 #93a1a1 #002b36
+#client.unfocused #002b36 #002b36 #586e75 #002b36
+#client.urgent #dc322f #dc322f #fdf6e3 #dc322f
+
+##debian
+client.focused #d70a53 #d70a53 #ffffff #8c0333
+client.focused_inactive #333333 #333333 #888888 #333333
+client.unfocused #333333 #333333 #888888 #333333
+client.urgent #eb709b #eb709b #ffffff #eb709b
