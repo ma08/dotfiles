@@ -28,27 +28,24 @@ class i3_exit:
         self.disable_buttons()
         self.status.set_label("Suspending, please standby...")
         os.system("i3-lock")
-        os.system("dbus-send --system --print-reply \
-                --dest=\"org.freedesktop.UPower\"   \
-                /org/freedesktop/UPower             \
-                org.freedesktop.UPower.Suspend")
+	os.system("dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Suspend\" boolean:true") 
         gtk.main_quit()
 
     def reboot_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Rebooting, please standby...")
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Restart")
+	os.system("dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Reboot\" boolean:true") 
 
     def shutdown_action(self,btn):
         self.disable_buttons()
         self.status.set_label("Shutting down, please standby...")
-        os.system("dbus-send --system --print-reply   \
-                --dest=\"org.freedesktop.ConsoleKit\" \
-                /org/freedesktop/ConsoleKit/Manager   \
-                org.freedesktop.ConsoleKit.Manager.Stop")
+	os.system("dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Shutdown\" boolean:true") 
+
+    def hibernate_action(self,btn):
+        self.disable_buttons()
+        self.status.set_label("Hibernate , please standby...")
+	os.system("gksudo systemctl hibernate") 
+        gtk.main_quit()
 
     def create_window(self):
         self.window = gtk.Window()
@@ -103,6 +100,15 @@ class i3_exit:
         self.shutdown.connect("clicked", self.shutdown_action)
         self.button_box.pack_start(self.shutdown)
         self.shutdown.show()
+
+
+	#Hibernate button
+        self.hibernate = gtk.Button("_Hibernate")
+        self.hibernate.set_border_width(4)
+        self.hibernate.connect("clicked", self.hibernate_action)
+        self.button_box.pack_start(self.hibernate)
+        self.hibernate.show()
+        
         
         #Create HBox for status label
         self.label_box = gtk.HBox()
@@ -129,4 +135,5 @@ def main():
 
 if __name__ == "__main__":
     go = i3_exit()
+    #os.system("dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Suspend\" boolean:true") 
     main()
