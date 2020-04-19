@@ -329,3 +329,5 @@ function! HLNext (blinktime)
   call matchdelete(ring)
   redraw
 endfunction
+
+hi Normal ctermbg=NONE
