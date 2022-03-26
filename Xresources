@@ -6,8 +6,20 @@
 ! Last Modified: 6 Sep 2014
 ! -----------------------------------------------------------------------------
 URxvt.transparent:   true
-URxvt.shading:       25
+URxvt.shading:      20
+
+
+! URxvt.depth: 24
+
 !URxvt.meta8: true
+
+URxvt.perl-lib: /home/sourya4/pro/repos/urxvt-perls/
+
+
+
+
+
+
 
 URxvt.scrollBar: false
 !URxvt.modifier: super
@@ -23,18 +35,34 @@ URxvt.keysym.Control-Shift-H: perl:tabbedex:prev_tab
 URxvt.keysym.Control-Shift-R: perl:tabbedex:rename_tab
 URxvt.tabbed.no-tabbedex-keys: true
 
-URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex,url-select
+!URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex,url-select
+URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select
+!URxvt.perl-ext-common: default,clipboard,keyboard-select,tabbedex,url-select
 URxvt.keysym.Mod4-apostrophe: perl:url-select:select_next
 
 
 URxvt.clipboard.autocopy:   true
-URxvt.iso14755: False
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.keysym.Mod4-semicolon: perl:keyboard-select:activate
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+!URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! URxvt.iso14755: False
+URxvt.keysym.M-semicolon: perl:keyboard-select:activate
 
 URxvt.letterSpace: -1
-URxvt.font: xft:Inconsolata for Powerline:pixelsize=15:antialias=true:hinting=true
+!URxvt.font: xft:NATS:pixelsize=19
+!URxvt*font: xft:Inconsolata:pixelsize=19, xft:NATS:size=12
+URxvt.font: xft:Inconsolata:pixelsize=19
+
+
+
+!URxvt.font: xft:Inconsolata for Powerline:pixelsize=15:antialias=true:hinting=true
+!URxvt.font: xft:Inconsolata for Powerline:pixelsize=15:antialias=true:hinting=true
 !URxvt.font:xft:Ubuntu Mono derivative Powerline:pixelsize=14
 !URxvt.boldfont:xft:Ubuntu Mono derivative Powerline Bold:pixelsize=15
 !URxvt.italicFont: xft:Droid Sans Mono Slashed:pixelsize=9:Italic
@@ -70,3 +98,5 @@ URxvt.font: xft:Inconsolata for Powerline:pixelsize=15:antialias=true:hinting=tr
 
 rofi.highlightbg: #676d3d
 rofi.opacity: 80
+
+!opacity-rule = ["85:class_g = 'URxvt'"];

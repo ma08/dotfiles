@@ -10,8 +10,12 @@
 #exec_always xinput set-prop 12 "Device enabled" 0
 #alsactl restore
 
+exec --no-startup-id $HOME/.i3/multimonitor_config_dummy.sh
+
+exec --no-startup-id setxkbmap -option caps:super
+
 focus_on_window_activation focus
-bindsym Print exec shutter -f
+bindsym Print exec flameshot gui
 #workspace_auto_back_and_forth yes
 workspace_layout tabbed
 
@@ -32,7 +36,8 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvt -cd ~/pro
-bindsym $mod+Shift+Control+t exec /home/ma08/pro/repos/dotfiles/i3/enable_disable_touchpad.sh
+bindsym $mod+Shift+Return exec gnome-terminal
+bindsym $mod+Shift+Control+t exec /home/sourya4/pro/repos/dotfiles/i3/enable_disable_touchpad.sh
 
 #bindsym  --release Caps_Lock exec killall -USR1 i3status 
 bindsym  --release Caps_Lock exec killall -USR1 i3status
@@ -75,10 +80,15 @@ bindsym $mod+q exec ~/.i3/xkcd_i3lock.py
 bindsym --release button2 kill
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+# bindsym $mod+h focus left
+# bindsym $mod+j focus down
+# bindsym $mod+k focus up
+# bindsym $mod+l focus right
+# exec i3-cycle right
+bindsym $mod+j exec i3-cycle down
+bindsym $mod+k exec i3-cycle up
+bindsym $mod+h exec i3-cycle left
+bindsym $mod+l exec i3-cycle right
 
 # change focus with tab keys
 
@@ -99,10 +109,12 @@ bindsym $mod+Control+h workspace prev
 bindsym $mod+Control+l workspace next
 
 
-bindsym $mod+i  workspace prev;
+bindsym $mod+Shift+i focus output left;
+bindsym $mod+i  workspace prev_on_output;
 #bindsym $mod+i [class="mplayer2"] move workspace prev;   workspace prev;focus  mode_toggle 
 #bindsym $mod+o  [class="mplayer2"] move workspace next; workspace next;focus mode_toggle
-bindsym $mod+o  workspace next;
+bindsym $mod+Shift+o focus output right;
+bindsym $mod+o  workspace next_on_output;
 
 # reload the configuration file
 bindsym $mod+Shift+b reload
@@ -153,8 +165,8 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 #bindsym $mod+Shift+space exec mpc toggle
 
-bindsym $mod+Control+Shift+s exec shutter -f -d 0
-#bindsym $Control+Shift+space exec su ma08 && mpc toggle
+bindsym $mod+Control+Shift+s exec flameshot -f -d 0
+#bindsym $Control+Shift+space exec su 
 bindsym --release Shift+Control+space exec  who >> /home/ma08/whoisi3
 
 # change focus between tiling / floating windows
@@ -197,16 +209,16 @@ bindsym $mod+b workspace back_and_forth
 
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8
+bindsym $mod+Shift+9 move container to workspace 9; workspace 9
+bindsym $mod+Shift+0 move container to workspace 10; workspace 10
 
 
 bindsym $mod+Shift+Control+j move container to workspace next; workspace next
@@ -214,8 +226,8 @@ bindsym $mod+Shift+Control+l move container to workspace next; workspace next
 bindsym $mod+Shift+Control+k move container to workspace prev; workspace prev
 bindsym $mod+Shift+Control+h move container to workspace prev; workspace prev
 
-bindsym $mod+m move container to workspace next; workspace next
-bindsym $mod+n move container to workspace prev; workspace prev
+bindsym $mod+m move container to workspace next_on_output; workspace next_on_output
+bindsym $mod+n move container to workspace prev_on_output; workspace prev_on_output
 
 # move workspace between outputs
 #bindsym $mod+y move workspace to output left
@@ -249,39 +261,55 @@ mode "resize" {
 }
 
 #bindsym $mod+Shift+m floating enable; resize set 320 px 180 px; move window to position 1045 px 0 px
-bindsym $mod+Shift+m fullscreen disable; floating enable; resize set 320 px 180 px; sticky enable; move window to position 1600 px 800 px
+# bindsym $mod+Shift+m fullscreen disable; floating enable; resize set 320 px 180 px; sticky enable; move window to position 1600 px 800 px
 #for_window [class="mpv"] fullscreen disable; floating enable; resize set 320 px 180 px; sticky enable; move window to position 1600 px 800 px
 
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-  id bar-1
-        status_command ~/.i3/i3status-conky-launcher.sh
-        position top
-#font pango:Inconsolata for Powerline Bold 10    
- font pango:Font Awesome 8
-  colors {
-    separator #dc322f
-    #background #002b36
-    #background $transparent
-    statusline #000000
-    focused_workspace #fdf6e3 #859900 #fdf6e3
-    active_workspace #fdf6e3 #6c71c4 #fdf6e3
-    inactive_workspace #586e75 #93a1a1 #002b36
-    urgent_workspace #d33682 #d33682 #fdf6e3
-    #   BORDER       BACKGROUND   TEXT
-    #focused_workspace  $transparent $transparent $yellow
-    #inactive_workspace $transparent $transparent $white
-    #active_workspace   $transparent $transparent $white
-    #urgent_workspace   $darkred     $darkred     $transparent
-    #binding_mode       $transparent $transparent $yellow
-  }
-}
+# bar {
+#   id bar-1
+#         status_command i3status
+#         # status_command i3status -c ~/.i3/i3status.conf
+#         # status_command py3status -c ~/.i3/i3status.conf
+#         # status_command ~/.i3/i3status-conky-launcher.sh
+#         position top
+#  font pango:Font Awesome 8
+#   colors {
+#     separator #dc322f
+#     statusline #000000
+#     focused_workspace #fdf6e3 #859900 #fdf6e3
+#     active_workspace #fdf6e3 #6c71c4 #fdf6e3
+#     inactive_workspace #586e75 #93a1a1 #002b36
+#     urgent_workspace #d33682 #d33682 #fdf6e3
+#   }
+#   tray_output primary
+# }
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh  > $HOME/.config/polybar/log.out 2>&1 &
+
 
 bindsym $mod+Shift+a exec ~/.i3/audio-device-switch.sh
 # colors
+
+# Colour Configurations
+set $bg-color            #4f5b66
+set $inactive-bg-color   #343d46
+set $text-color          #fbf1c7
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #bf616a
+set $cheeky              #282828
+
+hide_edge_borders both
+
+# window colors
+# name | border | background | text | indicator
+client.focused $text-color $bg-color $text-color $bg-color
+client.unfocused $inactive-bg-color $inactive-bg-color $inactive-text-color $bg-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $bg-color
+client.urgent $urgent-bg-color $urgent-bg-color $text-color $bg-color
+
 
 # volume
 #bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+ && killall -USR1 i3status
@@ -317,8 +345,8 @@ bindsym Shift+Control+k exec mpc prev && killall -SIGUSR1 conky && killall notif
 
 #launch applications
 bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+d exec urxvt -e ranger "/home/ma08/pro/repos/youplay/downloads"
-bindsym $mod+Shift+p exec urxvt -e ranger "/home/ma08/pro/life/ravan"
+bindsym $mod+Shift+d exec code ~/pro/repos/dotfiles
+# bindsym $mod+Shift+d exec urxvt -e ranger "/home/ma08/pro/repos/youplay/downloads"
 #bindsym $mod+Shift+t exec ~/Desktop/tor-browser_en-US/start-tor-browser
 
 for_window [class="I3-exit"] floating enable border normal
@@ -326,7 +354,7 @@ for_window [class="I3-exit"] floating enable border normal
 #go(po) home
 bindsym $mod+Delete exec python ~/.i3/i3-exit.py
 bindsym $mod+p exec ~/.i3/goHome.sh
-bindsym $mod+Shift+n exec killall notify-osd
+# bindsym $mod+Shift+n exec killall notify-osd
 #the process will be created when a new notification is received
 #so only the present notification is removed. AFAIK
 
@@ -336,7 +364,7 @@ bindsym XF86Explorer exec google-chrome
 bindsym XF86Mail exec thunderbird -compose
 bindsym XF86HomePage exec nemo
 
-bindsym $mod+Shift+o exec notify-send -t 100 $(xprop -id `xdotool getactivewindow` | grep WM_CLASS | cut -d '"' -f4) 
+# bindsym $mod+Shift+o exec notify-send -t 1000 $(xprop -id `xdotool getactivewindow` | grep WM_CLASS | cut -d '"' -f4) 
 #bindsym $mod+Shift+o exec notify-send -t 100 "$(xprop -id `xdotool getactivewindow` | grep WM_NAME | tail -n 1 | cut -d '"' -f2)" 
 #bindsym $mod+Shift+o exec xprop -id `xdotool getactivewindow`  > ~/out.txt 
 
@@ -345,11 +373,13 @@ bindsym $mod+Shift+o exec notify-send -t 100 $(xprop -id `xdotool getactivewindo
 assign [class="Vlc"] 7
 assign [class="Pidgin"] 5
 assign [class="Gvim"] 3
+assign [class="Code"] 3
 assign [class="Nautilus"] 9
 assign [class="Libre*"] 8
 assign [class="libreoffice-impress"] 8
 assign [class="Evince"] 8
-assign [class="Firefox"] 4
+assign [class="Slack"] 6
+# assign [class="Firefox"] 4
 assign [class="Wicd-client.py"] 1
 #assign [class="Pidgin"] 8
 assign [class="Gnome-system-monitor"] 1
@@ -357,13 +387,13 @@ assign [class="Rhythmbox"] 2
 assign [class="Linuxdcpp"] 10
 
 # startup programs
-exec --no-startup-id shutter
+exec --no-startup-id flameshot
 exec --no-startup-id blueman-applet
 exec --no-startup-id mpd
 exec --no-startup-id "dropbox start"
 #exec --no-startup-id xautolock -time 10 -detectsleep -locker "~/.i3/xkcd_i3lock.py" -notify 10 -notifier "~/.i3/bark.sh" -corners -000 -cornerdelay 10  &
 #exec --no-startup-id feh --bg-scale ~/Desktop/vlHieo1.jpg
-exec --no-startup-id feh --bg-scale ~/Pictures/RickandMorty/cnSx4vU.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/buddha_matrix.jpg
 #exec --no-startup-id feh --bg-scale ~/Desktop/polygonWallpaper.png
 #exec --no-startup-id feh --bg-scale ~/pro/dotfiles/wallpapers/arsutd3-0.png
 exec --no-startup-id ~/.i3/ram.sh
@@ -371,22 +401,25 @@ exec --no-startup-id ~/.i3/ram.sh
 exec --no-startup-id exec nm-applet
 exec --no-startup-id compton -CGb 
 exec --no-startup-id i3-msg 'workspace 1; exec gnome-system-monitor'
-exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist -e ncmpcpp -s playlist'
-exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist-scratchpad -e ncmpcpp -s playlist'
-exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-visualizer -e ncmpcpp -s visualizer'
-exec --no-startup-id i3-msg 'workspace 1; exec urxvt -e vim -p ~/.i3/config ~/.vimrc ~/.bashrc'
-exec --no-startup-id i3-msg 'workspace 1; exec urxvt -e vim ~/pro/TODO.md'
-exec --no-startup-id i3-msg 'workspace 2; exec rhythmbox'
-exec --no-startup-id i3-msg 'workspace 3; exec urxvt -cd ~/pro'
-exec --no-startup-id i3-msg 'workspace 8; exec urxvt vim ~/.i3/config'
+# exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist -e ncmpcpp -s playlist'
+# exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist-scratchpad -e ncmpcpp -s playlist'
+# exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-visualizer -e ncmpcpp -s visualizer'
+# exec --no-startup-id i3-msg 'workspace 1; exec urxvt -e vim -p ~/.i3/config ~/.vimrc ~/.bashrc'
+exec --no-startup-id i3-msg 'workspace 3; exec code ~/pro/repos/dotfiles'
+# exec --no-startup-id i3-msg 'workspace 1; exec urxvt -e vim ~/pro/TODO.md'
+# exec --no-startup-id i3-msg 'workspace 2; exec rhythmbox'
+# exec --no-startup-id i3-msg 'workspace 3; exec urxvt -cd ~/pro'
+# exec --no-startup-id i3-msg 'workspace 3; exec code ~/pro/repos/dotfiles'
+# bindsym $mod+Shift+d exec code ~/pro/repos/dotfiles
 exec --no-startup-id i3-msg 'workspace 4; exec firefox'
+exec --no-startup-id i3-msg 'workspace 6; exec slack'
 #exec --no-startup-id i3-msg 'workspace 4; exec ~/Desktop/tor-browser_en-US/start-tor-browser'
 #exec --no-startup-id i3-msg 'workspace 8; exec google-chrome'
-exec --no-startup-id i3-msg 'workspace 6; exec urxvt -cd ~/pro -e ranger --clean'
-exec --no-startup-id i3-msg 'workspace 6; exec urxvt -e ranger "/home/ma08/pro/repos/youplay/downloads"'
-exec --no-startup-id i3-msg 'workspace 5; exec pidgin'
+# exec --no-startup-id i3-msg 'workspace 6; exec urxvt -cd ~/pro -e ranger --clean'
+# exec --no-startup-id i3-msg 'workspace 6; exec urxvt -e ranger "/home/ma08/pro/repos/youplay/downloads"'
+# exec --no-startup-id i3-msg 'workspace 5; exec pidgin'
 exec --no-startup-id i3-msg 'workspace 9; exec nautilus'
-exec --no-startup-id i3-msg 'workspace 10; exec linuxdcpp'
+# exec --no-startup-id i3-msg 'workspace 10; exec linuxdcpp'
 exec --no-startup-id gnome-sound-applet
 #exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id unity-settings-daemon
@@ -466,9 +499,10 @@ smart_gaps on
 smart_borders on
 
 # increase screen brightness with notification
-bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'brightness up'"
+bindsym XF86MonBrightnessUp exec  
+
 # decrease screen brightness with notification
-bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'"
+# bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'"
 
 ##solarized
 #client.focused #859900 #859900 #fdf6e3 #859900
@@ -483,7 +517,34 @@ bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'"
 #client.urgent #dc322f #dc322f #fdf6e3 #dc322f
 
 ##debian
-client.focused #d70a53 #d70a53 #ffffff #8c0333
-client.focused_inactive #333333 #333333 #888888 #333333
-client.unfocused #333333 #333333 #888888 #333333
-client.urgent #eb709b #eb709b #ffffff #eb709b
+# client.focused #d70a53 #d70a53 #ffffff #8c0333
+# client.focused_inactive #333333 #333333 #888888 #333333
+# client.unfocused #333333 #333333 #888888 #333333
+# client.urgent #eb709b #eb709b #ffffff #eb709b
+
+exec --no-startup-id $HOME/.i3/multimonitor_config.sh
+
+bindsym $mod+Shift+p exec $HOME/.i3/multimonitor_config.sh
+
+
+workspace 1 output eDP
+workspace 8 output HDMI-A-0 eDP
+workspace 2 output HDMI-A-0 eDP
+workspace 3 output DisplayPort-0 eDP
+workspace 4 output DisplayPort-0 eDP
+workspace 9 output DisplayPort-0 eDP
+workspace 5 output DisplayPort-0 eDP
+workspace 6 output DisplayPort-0 eDP
+workspace 7 output DisplayPort-0 eDP
+# workspace 8 output DisplayPort-0
+
+# bindsym $mod+Shift+n move workspace to output left
+bindsym $mod+Control+Shift+n move workspace to output left; focus output left;
+# bindsym $mod+Control+Shift+n move container to output left
+bindsym $mod+Shift+n move container to output left; focus output left;
+# bindsym $mod+Shift+m move workspace to output right
+bindsym $mod+Control+Shift+m move workspace to output right;  focus output right;
+bindsym $mod+Shift+m move container to output right;  focus output right;
+# bindsym $mod+Control+Shift+m move container to output right
+
+

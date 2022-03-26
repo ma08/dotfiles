@@ -1,3 +1,5 @@
+sudo apt install rofi feh compton rxvt-unicode-256color
+
 git submodule init
 git submodule update
 #git submodule foreach git submodule init
@@ -45,6 +47,7 @@ ln -s $(pwd)/vim/.vimrc ~/.vimrc
 ln -s $(pwd)/vim/.gvimrc ~/.gvimrc
 ln -s $(pwd)/vimperator/.vimperatorrc ~/.vimperatorrc
 ln -s $(pwd)/i3/i3status.conf ~/.i3status.conf
+
 
 #cd ~/.vim/bundle/YouCompleteMe
 #./install.sh --clang-completer --system-libclang --system-boost
