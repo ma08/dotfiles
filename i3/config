@@ -427,6 +427,9 @@ exec --no-startup-id  /usr/lib/policykit-1-gnome/polkit-gnome-authentication-age
 exec --no-startup-id xmodmap ~/.Xmodmap
 exec /usr/lib/vino/vino-server
 exec urxvt
+
+exec_always exec volumeicon
+exec_always exec mkchromecast
 #
 #exec pulseaudio --start
 #exec /home/sourya/.i3/update_background
