@@ -379,6 +379,7 @@ assign [class="Libre*"] 8
 assign [class="libreoffice-impress"] 8
 assign [class="Evince"] 8
 assign [class="Slack"] 6
+assign [class="Discord"] 6
 # assign [class="Firefox"] 4
 assign [class="Wicd-client.py"] 1
 #assign [class="Pidgin"] 8
@@ -413,6 +414,7 @@ exec --no-startup-id i3-msg 'workspace 3; exec code ~/pro/repos/dotfiles'
 # bindsym $mod+Shift+d exec code ~/pro/repos/dotfiles
 exec --no-startup-id i3-msg 'workspace 4; exec firefox'
 exec --no-startup-id i3-msg 'workspace 6; exec slack'
+exec --no-startup-id i3-msg 'workspace 6; exec discord'
 #exec --no-startup-id i3-msg 'workspace 4; exec ~/Desktop/tor-browser_en-US/start-tor-browser'
 #exec --no-startup-id i3-msg 'workspace 8; exec google-chrome'
 # exec --no-startup-id i3-msg 'workspace 6; exec urxvt -cd ~/pro -e ranger --clean'
