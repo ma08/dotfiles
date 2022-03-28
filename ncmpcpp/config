@@ -6,4 +6,4 @@ visualizer_sync_interval = "30"
 #visualizer_type = "wave" (spectrum/wave)
 #visualizer_type = "spectrum" (spectrum/wave)
 visualizer_look = "●┃"
-mpd_music_dir = "~/mpd_music_share"
+mpd_music_dir = "~/mpd_music_share/music_disk"
