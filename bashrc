@@ -91,6 +91,11 @@ function fixcaps
 {
     xdotool key Caps_Lock
 }
+function FIXCAPS 
+{
+    xdotool key Caps_Lock
+}
+
 function opcur
 {
 i3-msg exec "$1"
