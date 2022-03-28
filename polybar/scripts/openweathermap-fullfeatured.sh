@@ -54,8 +54,6 @@ get_duration() {
 
 
 . $HOME/.config/polybar/scripts/openweather.config
-UNITS="metric"
-SYMBOL="°"
 
 API="https://api.openweathermap.org/data/2.5"
 

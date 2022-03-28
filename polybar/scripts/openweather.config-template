@@ -1,2 +1,4 @@
 KEY=<API KEY>
 CITY=<CITY ID>
+UNITS=imperial
+SYMBOL="°F"
