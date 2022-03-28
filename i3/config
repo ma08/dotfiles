@@ -233,7 +233,7 @@ bindsym $mod+n move container to workspace prev_on_output; workspace prev_on_out
 #bindsym $mod+y move workspace to output left
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -338,8 +338,8 @@ bindsym XF86AudioPrev exec mpc prev
 bindsym Shift+Control+j exec mpc next && killall -SIGUSR1 conky && killall notify-osd && notify-send "$(mpc current -f '%title%')" "$(mpc current -f '%album%')"
 #bindsym Shift+Control+k exec ncmpcpp prev && killall -USR1 i3status
 bindsym Shift+Control+k exec mpc prev && killall -SIGUSR1 conky && killall notify-osd && notify-send "$(mpc current -f '%title%')" "$(mpc current -f '%album%')"
-#bindsym Shift+Control+space exec ncmpcpp toggle && killall -USR1 i3status
-#bindsym Shift+Control+space exec mpc toggle && killall -SIGUSR1 conky
+# bindsym Shift+Control+space exec ncmpcpp toggle && killall -USR1 i3status
+bindsym Shift+Control+space exec mpc toggle && killall -SIGUSR1 conky
 #bindsym Shift+Control+space exec urxvt
 
 
@@ -402,7 +402,7 @@ exec --no-startup-id ~/.i3/ram.sh
 exec --no-startup-id exec nm-applet
 exec --no-startup-id compton -CGb 
 exec --no-startup-id i3-msg 'workspace 1; exec gnome-system-monitor'
-# exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist -e ncmpcpp -s playlist'
+exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist -e ncmpcpp -s playlist'
 # exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-playlist-scratchpad -e ncmpcpp -s playlist'
 # exec --no-startup-id i3-msg 'workspace 2; exec urxvt -name ncmpcpp-visualizer -e ncmpcpp -s visualizer'
 # exec --no-startup-id i3-msg 'workspace 1; exec urxvt -e vim -p ~/.i3/config ~/.vimrc ~/.bashrc'
@@ -556,3 +556,17 @@ bindsym $mod+Shift+m move container to output right;  focus output right;
 
 exec_always exec volumeicon
 exec_always exec mkchromecast
+
+# Create Log out, Reboot, Poweroff bindings
+mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff" {
+        bindsym r exec --no-startup-id systemctl reboot
+        bindsym s exec --no-startup-id systemctl suspend; mode "default"
+        bindsym l exit
+        bindsym p exec --no-startup-id systemctl poweroff
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+e mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff"
