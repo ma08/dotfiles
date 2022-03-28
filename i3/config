@@ -428,8 +428,9 @@ exec --no-startup-id xmodmap ~/.Xmodmap
 exec /usr/lib/vino/vino-server
 exec urxvt
 
-exec_always exec volumeicon
-exec_always exec mkchromecast
+exec_always exec killall volumeicon
+exec_always exec killall mkchromecast
+
 #
 #exec pulseaudio --start
 #exec /home/sourya/.i3/update_background
@@ -551,3 +552,5 @@ bindsym $mod+Shift+m move container to output right;  focus output right;
 # bindsym $mod+Control+Shift+m move container to output right
 
 
+exec_always exec volumeicon
+exec_always exec mkchromecast
