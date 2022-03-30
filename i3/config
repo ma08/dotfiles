@@ -40,7 +40,7 @@ bindsym $mod+Shift+Return exec gnome-terminal
 bindsym $mod+Shift+Control+t exec /home/sourya4/pro/repos/dotfiles/i3/enable_disable_touchpad.sh
 
 #bindsym  --release Caps_Lock exec killall -USR1 i3status 
-bindsym  --release Caps_Lock exec killall -USR1 i3status
+# bindsym  --release Caps_Lock exec killall -USR1 i3status
 
 # kill focused window
 bindsym $mod+Shift+c kill
@@ -380,7 +380,7 @@ assign [class="libreoffice-impress"] 8
 assign [class="Evince"] 8
 assign [class="Slack"] 6
 assign [class="Discord"] 6
-# assign [class="Firefox"] 4
+assign [class="Firefox"] 4
 assign [class="Wicd-client.py"] 1
 #assign [class="Pidgin"] 8
 assign [class="Gnome-system-monitor"] 1
