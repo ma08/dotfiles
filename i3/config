@@ -172,6 +172,8 @@ bindsym --release Shift+Control+space exec  who >> /home/ma08/whoisi3
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+bindsym $mod+x exec urxvt -hold -e sh -c "cd /home/sourya4/pro/looney-tunes/looney-tunes/saa1 && python3 ./saa1.py --dld_clipboard_url"
+
 # focus the parent container
 bindsym $mod+a focus parent
 
@@ -511,16 +513,16 @@ bindsym XF86MonBrightnessUp exec
 # bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'"
 
 ##solarized
-#client.focused #859900 #859900 #fdf6e3 #859900
-#client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
-#client.unfocused #073642 #073642 #93a1a1 #586e75
-#client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+client.focused #859900 #859900 #fdf6e3 #859900
+client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
+client.unfocused #073642 #073642 #93a1a1 #586e75
+client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
 ##slate theme
-#client.focused #586e75 #586e75 #fdf6e3 #268bd2
-#client.focused_inactive #073642 #073642 #93a1a1 #002b36
-#client.unfocused #002b36 #002b36 #586e75 #002b36
-#client.urgent #dc322f #dc322f #fdf6e3 #dc322f
+# client.focused #586e75 #586e75 #fdf6e3 #268bd2
+# client.focused_inactive #073642 #073642 #93a1a1 #002b36
+# client.unfocused #002b36 #002b36 #586e75 #002b36
+# client.urgent #dc322f #dc322f #fdf6e3 #dc322f
 
 ##debian
 # client.focused #d70a53 #d70a53 #ffffff #8c0333
