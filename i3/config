@@ -93,10 +93,14 @@ bindsym $mod+l exec i3-cycle right
 # change focus with tab keys
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left workspace prev
-bindsym $mod+Right workspace next
-bindsym $mod+Up workspace prev
-bindsym $mod+Down workspace next
+# bindsym $mod+Left workspace prev
+bindsym $mod+Left exec i3-cycle left
+# bindsym $mod+Right workspace next
+bindsym $mod+Right exec i3-cycle right
+# bindsym $mod+Up workspace prev
+bindsym $mod+Up exec i3-cycle up
+# bindsym $mod+Down workspace next
+bindsym $mod+Down exec i3-cycle down
 
 #bindsym $mod+Control+k exec $control prev go
 #bindsym $mod+Control+j exec $control next go
@@ -503,7 +507,8 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-smart_gaps on
+# smart_gaps on
+smart_gaps inverse_outer
 smart_borders on
 
 # increase screen brightness with notification

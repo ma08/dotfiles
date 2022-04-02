@@ -142,7 +142,8 @@ export HTTP_PROXY=http://10.3.100.207:8080
 
 function ssh_speechrec_vm
 {
-gcloud compute ssh --troubleshoot --zone "us-central1-c" "speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
+gcloud compute ssh  --zone "us-central1-c" "sk5057@speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
+#gcloud compute ssh --troubleshoot --zone "us-central1-c" "speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
 }
 
 function start_speechrec_vm
