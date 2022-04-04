@@ -44,6 +44,7 @@ ln -s $(pwd)/i3 ~/.i3
 ln -s $(pwd)/bashrc ~/.bashrc
 ln -s $(pwd)/Xresources ~/.Xresources
 ln -s $(pwd)/vim/.vimrc ~/.vimrc
+ln -s $(pwd)/vscode/.vimrc ~/.vscode_vimrc
 ln -s $(pwd)/vim/.gvimrc ~/.gvimrc
 ln -s $(pwd)/vimperator/.vimperatorrc ~/.vimperatorrc
 ln -s $(pwd)/i3/i3status.conf ~/.i3status.conf
