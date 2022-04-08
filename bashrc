@@ -169,6 +169,11 @@ gcloud compute ssh --zone "us-east1-c" "sk5057@deeplearning-1-vm"  --tunnel-thro
 #gcloud compute ssh --zone "us-west1-b" "sk5057@deeplearning-vm-vm"  --project "deep-learning-344607"
 }
 
+function ssh_nlp
+{
+gcloud compute ssh --zone "us-east1-c" "sk5057@nlp-vm"  --project "deep-learning-344607"
+}
+
 function start_dl_vm
 {
 	gcloud compute instances start deeplearning-1-vm --project "deep-learning-344607" --zone "us-east1-c"
