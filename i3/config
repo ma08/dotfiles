@@ -332,7 +332,7 @@ bindsym $mod+Control+Shift+Up exec xbacklight -set $(echo `xbacklight -get`+20|b
 bindsym $mod+Control+Shift+Down exec xbacklight -set $(echo `xbacklight -get`-5|bc)
 
 # Media player controls
-bindsym XF86AudioPlay exec su ma08 && mpc toggle
+bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioPause exec mpc toggle
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
