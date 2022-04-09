@@ -7,3 +7,7 @@ visualizer_sync_interval = "30"
 #visualizer_type = "spectrum" (spectrum/wave)
 visualizer_look = "●┃"
 mpd_music_dir = "~/mpd_music_share/music_disk"
+#song_list_format = "{$8(%l)$9 }{%a - }{%t}|{$8%f$9}"
+#song_columns_list_format = "{l} {b} {t}"
+song_columns_list_format = "(30)[white]{l} (55)[yellow]{t} (120)[red]{b}"
+media_library_primary_tag = "album_artist"
