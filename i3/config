@@ -400,7 +400,7 @@ exec --no-startup-id mpd
 exec --no-startup-id "dropbox start"
 #exec --no-startup-id xautolock -time 10 -detectsleep -locker "~/.i3/xkcd_i3lock.py" -notify 10 -notifier "~/.i3/bark.sh" -corners -000 -cornerdelay 10  &
 #exec --no-startup-id feh --bg-scale ~/Desktop/vlHieo1.jpg
-exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/buddha_matrix.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/buddha_matrix.jpg
 #exec --no-startup-id feh --bg-scale ~/Desktop/polygonWallpaper.png
 #exec --no-startup-id feh --bg-scale ~/pro/dotfiles/wallpapers/arsutd3-0.png
 exec --no-startup-id ~/.i3/ram.sh
@@ -577,3 +577,5 @@ mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff" {
 }
 
 bindsym $mod+Shift+e mode "(S)uspend, (L)ogout, (R)eboot, (P)oweroff"
+
+exec --no-startup-id clipit

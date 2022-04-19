@@ -1,4 +1,5 @@
 sudo apt install rofi feh compton rxvt-unicode-256color
+sudo apt-get install clipit
 
 git submodule init
 git submodule update
