@@ -202,4 +202,42 @@ function cd_spring22
 	cd ~/pro/columbia/spring22
 }
 
+function sox_duration_total
+{
+  if [[ "$#" -lt 1 ]]; then
+    echo "find files!"
+    echo "  sox_duration_total *.wav"
+    echo ""
+    return
+  fi
+
+  # for i in "$@"; do
+  #   val=`soxi -d "$i"`
+  #   echo "$i"
+  # done
+
+  #echo -n "$2"
+
+  soxi -D "$@" | python3 -c "import sys;print(\"\ntotal sec:    \" +str( sum(float(l) for l in sys.stdin)))"
+  soxi -D "$@" | python3 -c "import sys;print(\"\nmin sec:    \" +str( min(float(l) for l in sys.stdin)))"
+  soxi -D "$@" | python3 -c "import sys;print(\"\nmax sec:    \" +str( max(float(l) for l in sys.stdin)))"
+  soxi -D "$@" | python3 -c "import sys;print(\"total min:    \" +str( sum(float(l) for l in sys.stdin)/60 ))"
+  soxi -D "$@" | python3 -c "import sys;import datetime;print(\"running time: \" +str( datetime.timedelta(seconds=sum(float(l) for l in sys.stdin)) ))"
+}
+
+function sox_duration_total_dir
+{
+    # OUTPUT="$(for i ix *wav; do soxi -D $i; done)";
+    # echo "${OUTPUT}"
+
+    ## get total number of seconds of WAVs in dir
+    TOTAL_SECS=0
+    for i in *wav; do      
+        SECS="$(soxi -D $i)"
+        echo "$i : $SECS"
+        TOTAL_SECS=$(echo "$TOTAL_SECS + $SECS" | bc)
+    done
+    printf "\n\nThere are a total of ${TOTAL_SECS} seconds of WAV files in the dir\n\n"
+}
+
 
