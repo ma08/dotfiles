@@ -48,7 +48,8 @@ bindsym $mod+Shift+w exec kill -9 $(xprop -id $(xdpyinfo | grep focus | cut -f4 
 
 bindsym $mod+Control+t exec urxvt -e ~/pro/repos/tor-browser-linux64-9.0.5_en-US/tor-browser_en-US/Browser/TorBrowser/Tor/tor
 bindsym $mod+Shift+t exec urxvt -e ~/pro/repos/tor-browser-linux64-9.0.5_en-US/tor-browser_en-US/Browser/start-tor-browser
-bindsym $mod+Shift+Control+o exec urxvt -e vim ~/pro/TODO.md
+#bindsym $mod+Shift+Control+o exec urxvt -e vim ~/pro/TODO.md
+bindsym $mod+Shift+Control+o exec code ~/pro/TODO.md
 
 # start dmenu (a program launcher)
 #bindsym $mod+p exec $control open
@@ -169,9 +170,9 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 #bindsym $mod+Shift+space exec mpc toggle
 
-bindsym $mod+Control+Shift+s exec flameshot -f -d 0
+#bindsym $mod+Control+Shift+s exec flameshot -f -d 0
 #bindsym $Control+Shift+space exec su 
-bindsym --release Shift+Control+space exec  who >> /home/ma08/whoisi3
+# bindsym --release Shift+Control+space exec  who >> /home/ma08/whoisi3
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -512,10 +513,11 @@ smart_gaps inverse_outer
 smart_borders on
 
 # increase screen brightness with notification
-bindsym XF86MonBrightnessUp exec  
+# bindsym XF86MonBrightnessUp exec  
 
 # decrease screen brightness with notification
-# bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'brightness down'"
+bindsym XF86MonBrightnessDown exec "sudo light -U 5; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "sudo light -A 5; notify-send 'brightness up'"
 
 ##solarized
 client.focused #859900 #859900 #fdf6e3 #859900
