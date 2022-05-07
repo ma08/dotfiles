@@ -115,7 +115,7 @@ key_toggle_find_mode = 'w'
 
 key_edit_tags = 'e'
 
-"key_go_to_position = 'g'
+key_go_to_position = 'g'
 
 key_song_info = 'i'
 
