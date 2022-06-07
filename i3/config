@@ -554,11 +554,11 @@ workspace 7 output DisplayPort-0 eDP
 # workspace 8 output DisplayPort-0
 
 # bindsym $mod+Shift+n move workspace to output left
-bindsym $mod+Control+Shift+n move workspace to output left; focus output left;
+bindsym $mod+Shift+comma move workspace to output left;
 # bindsym $mod+Control+Shift+n move container to output left
 bindsym $mod+Shift+n move container to output left; focus output left;
 # bindsym $mod+Shift+m move workspace to output right
-bindsym $mod+Control+Shift+m move workspace to output right;  focus output right;
+bindsym $mod+Shift+period move workspace to output right;
 bindsym $mod+Shift+m move container to output right;  focus output right;
 # bindsym $mod+Control+Shift+m move container to output right
 
