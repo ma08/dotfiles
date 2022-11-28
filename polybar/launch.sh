@@ -18,10 +18,10 @@ done
 # polybar &
 #  polybar eDP-top &
 # polybar eDP-bottom &
-polybar eDP-top &
+#polybar eDP-top &
 # polybar eDP-bottom &
 polybar desktop-1 &
-polybar desktop-2 &
+#polybar desktop-2 &
 # polybar desktop-2 &
 
 echo "Bars launched..."

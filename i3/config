@@ -10,7 +10,7 @@
 #exec_always xinput set-prop 12 "Device enabled" 0
 #alsactl restore
 
-exec --no-startup-id $HOME/.i3/multimonitor_config_dummy.sh
+#exec --no-startup-id $HOME/.i3/multimonitor_config_dummy.sh
 
 exec --no-startup-id setxkbmap -option caps:super
 
@@ -537,9 +537,9 @@ client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 # client.unfocused #333333 #333333 #888888 #333333
 # client.urgent #eb709b #eb709b #ffffff #eb709b
 
-exec --no-startup-id $HOME/.i3/multimonitor_config.sh
+#exec --no-startup-id $HOME/.i3/multimonitor_config.sh
 
-bindsym $mod+Shift+p exec $HOME/.i3/multimonitor_config.sh
+#bindsym $mod+Shift+p exec $HOME/.i3/multimonitor_config.sh
 
 
 workspace 1 output eDP

@@ -6,6 +6,9 @@ setxkbmap -option caps:super
 # export GNUNET_PREFIX=/usr/local/
 # export CPPFLAGS="-I/usr/local/include/gnunet/"
 # export LDFLAGS="-L/usr/local/lib/gnunet/"
+
+
+alias r='fc -s'
 function unsetproxy
 {
 unset http_proxy
@@ -140,21 +143,82 @@ export HTTP_PROXY=http://10.3.100.207:8080
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+function set_brightness_max
+{
+sudo brightnessctl set 255
+}
+
+function set_brightness
+{
+sudo brightnessctl set $1
+}
+
+function set_wall
+{
+feh --bg-scale ~/Pictures/Wallpapers/buddha_matrix.jpg
+}
+function ssh_reco
+{
+ssh sourya@rmeav4.audiovisualreco.com
+}
+function fuse_vpn_start
+{
+sudo openvpn --config /home/sourya4/pro/columbia/fuse_summer22/ssl.sourya__ssl_vpn_config.ovpn 
+}
+function ssh_rubicon_vm
+{
+cd_fuse && ssh -i rubiconx.pem ubuntu@52.13.250.197
+}
+
+
 function ssh_speechrec_vm
 {
-gcloud compute ssh  --zone "us-central1-c" "sk5057@speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
-#gcloud compute ssh --troubleshoot --zone "us-central1-c" "speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
+gcloud compute ssh --zone "us-east1-c" "speech-rec-ladduu"  --project "fund-speech-rec-proj"
+#gcloud compute ssh  --zone "us-central1-c" "sk5057@speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
+#gcloud compute ssh --zone "us-central1-c" "sk5057@speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
+}
+
+function ssh_speechrec_vm_clone
+{
+gcloud compute ssh --zone "us-east1-c" "speech-rec-ladduu-$1"  --project "fund-speech-rec-proj"
+#gcloud compute ssh  --zone "us-central1-c" "sk5057@speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
+#gcloud compute ssh --zone "us-central1-c" "sk5057@speech-rec-vm"  --tunnel-through-iap --project "speech-recognition-341701"
+}
+
+function ssh_nlp_ta
+{
+#gcloud compute ssh --zone "us-east1-c" "nlp-summer-demo-vm"  --project "nlp-summer-358101"
+gcloud compute ssh --zone "us-east1-c" "nlp-hw4-tut-vm"  --project "nlp-demo-358110"
+#gcloud compute ssh --zone "us-east1-c" "nlp-demo-vm-vm"  --project "nlp-summer-22"
+}
+
+function scp_nlp_ta_vm
+{
+  # scp -i  ~/.ssh/google_compute_engine -r $1 sk5057@34.74.72.42:~
+  gcloud compute scp --recurse $1 sourya4@nlp-hw4-tut-vm:~ --project "nlp-demo-358110" --zone us-east1-c
 }
 
 function start_speechrec_vm
 {
-	gcloud compute instances start speech-rec-vm --zone us-central1-c
+	gcloud compute instances start --zone "us-east1-c" "speech-rec-ladduu"  --project "fund-speech-rec-proj"
 
 }
 
+function start_speechrec_vm_clone
+{
+  gcloud compute instances start --zone "us-east1-c" "speech-rec-ladduu-$1"  --project "fund-speech-rec-proj"
+
+}
+function stop_speechrec_vm_clone
+{
+  gcloud compute instances stop --zone "us-east1-c" "speech-rec-ladduu-$1"  --project "fund-speech-rec-proj"
+
+}
+
+
 function stop_speechrec_vm
 {
-	gcloud compute instances stop speech-rec-vm --zone us-central1-c
+	gcloud compute instances stop  --zone "us-east1-c" "speech-rec-ladduu"  --project "fund-speech-rec-proj"
 
 }
 
@@ -186,6 +250,19 @@ function stop_dl_vm
 
 }
 
+function scp_speech_rec_vm
+{
+  # scp -i  ~/.ssh/google_compute_engine -r $1 sk5057@34.74.72.42:~
+  gcloud compute scp $1 sk5057@speech-rec-vm:~ --project "speech-recognition-341701" --zone us-central1-c
+}
+
+
+#gcloud compute scp sk5057@nlp-hw4-tut-vm:~/nlp_summer22_hw4/GoogleNews-vectors-negative300.bin.gz . --zone "us-east1-c"  --project "nlp-demo-358110"
+function scp_nlp_colab
+{
+  # scp -i  ~/.ssh/google_compute_engine -r $1 sk5057@34.74.72.42:~
+  gcloud compute scp $1 sk5057@nlp-colab-1-vm:~ --zone us-east1-c  --tunnel-through-iap --project "deep-learning-344607"
+}
 
 function scp_dl
 {
@@ -200,6 +277,20 @@ function vim_bashrc
 function cd_spring22
 {
 	cd ~/pro/columbia/spring22
+}
+function cd_T7
+{
+	cd /media/sourya4/T7
+}
+
+function cd_col
+{
+	cd ~/pro/columbia_codes/
+}
+
+function cd_fuse
+{
+	cd ~/pro/columbia/fuse_summer22
 }
 
 function sox_duration_total
@@ -239,5 +330,8 @@ function sox_duration_total_dir
     done
     printf "\n\nThere are a total of ${TOTAL_SECS} seconds of WAV files in the dir\n\n"
 }
+
+
+export PATH="$HOME/pro/repos/JAW/chromedriver:$HOME/bin/greenclip:$PATH"
 
 
