@@ -48,6 +48,28 @@ vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { silent = true })
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { silent = true })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { silent = true })
 
+vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<CR>", {
+  desc = "CodeCompanion actions",
+  silent = true,
+})
+vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CodeCompanionChat Toggle<CR>", {
+  desc = "Toggle CodeCompanion chat",
+  silent = true,
+})
+vim.keymap.set("v", "<leader>cA", "<cmd>CodeCompanionChat Add<CR>", {
+  desc = "Add selection to CodeCompanion chat",
+  silent = true,
+})
+vim.keymap.set({ "n", "v" }, "<leader>ci", ":CodeCompanion ", {
+  desc = "CodeCompanion inline prompt",
+  silent = false,
+})
+vim.keymap.set({ "n", "v" }, "<leader>cb", ":CodeCompanion #{buffer} ", {
+  desc = "CodeCompanion inline prompt with buffer",
+  silent = false,
+})
+vim.cmd([[cab cc CodeCompanion]])
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
@@ -172,6 +194,27 @@ require("lazy").setup({
         },
         inline = {
           adapter = "azure_openai_gpt55",
+          keymaps = {
+            stop = {
+              modes = { n = "<leader>cs" },
+            },
+          },
+        },
+        shared = {
+          keymaps = {
+            view_diff = {
+              modes = { n = "<leader>cd" },
+            },
+            accept_change = {
+              modes = { n = "<leader>cy" },
+            },
+            reject_change = {
+              modes = { n = "<leader>cn" },
+            },
+            always_accept = {
+              modes = { n = "<leader>cY" },
+            },
+          },
         },
       },
     },
