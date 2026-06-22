@@ -28,6 +28,14 @@ def_key "G"
   move_end
 def_key "p"
   pause
+def_key "tab"
+  dummy
+def_key "shift-tab"
+  dummy
+def_key "2"
+  dummy
+def_key "B"
+  show_browser
 def_key "x"
   delete_playlist_items
 def_key "n"
