@@ -70,6 +70,27 @@ vim.keymap.set({ "n", "v" }, "<leader>cb", ":CodeCompanion #{buffer} ", {
 })
 vim.cmd([[cab cc CodeCompanion]])
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "gitcommit",
+  callback = function(event)
+    vim.keymap.set("n", "<leader>cm", function()
+      local prompt = table.concat({
+        "#{buffer}",
+        "Draft a concise git commit message from the staged diff and status in this buffer.",
+        "Insert it at the top above the commented lines.",
+        "Use imperative mood.",
+        "Include a short body only if it adds useful context.",
+      }, " ")
+      vim.cmd("normal! gg")
+      vim.cmd("CodeCompanion " .. prompt)
+    end, {
+      buffer = event.buf,
+      desc = "Draft git commit message",
+      silent = true,
+    })
+  end,
+})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({

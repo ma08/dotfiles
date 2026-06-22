@@ -79,6 +79,10 @@ Neovim is the primary editor target:
 With `--install-packages`, the editor profile installs `neovim` through
 Homebrew, plus `node` for `npx`-backed ACP adapters.
 
+The editor profile also sets Git's global editor to `nvim` and enables verbose
+commit templates, so `git commit` opens Neovim with the staged diff available as
+commented context.
+
 Vim gets a minimal fallback:
 
 - `vim/vimrc-basic` -> `~/.vimrc`
@@ -100,6 +104,10 @@ Use `:CodeCompanionChat` inside Neovim to open an AI chat buffer. The first run
 may download plugins and the ACP adapter. ChatGPT auth must be available through
 Codex/Codex ACP on the machine; API-key and Azure OpenAI variants can be added
 later without changing the base music/editor/ranger setup.
+
+In `git commit` buffers, press `,cm` to draft a commit message from the verbose
+commit buffer. Press `,cy` to accept CodeCompanion's proposed edit or `,cn` to
+reject it.
 
 ## Ranger
 

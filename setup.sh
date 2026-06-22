@@ -186,6 +186,10 @@ setup_editor() {
   fi
   link_path "$ROOT/nvim/init.lua" "$HOME/.config/nvim/init.lua"
   link_path "$ROOT/vim/vimrc-basic" "$HOME/.vimrc"
+
+  run git config --global core.editor nvim
+  run git config --global commit.verbose true
+  run git config --global commit.status true
 }
 
 setup_ranger() {
