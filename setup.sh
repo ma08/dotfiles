@@ -138,11 +138,26 @@ install_brew_packages() {
   run "$brew" install "$@"
 }
 
+install_brew_casks() {
+  local brew
+  if [ "$APPLY" -eq 0 ]; then
+    run brew install --cask "$@"
+    return
+  fi
+
+  brew="$(brew_bin)" || {
+    echo "ERROR: Homebrew not found; install casks manually or rerun without --install-packages" >&2
+    exit 1
+  }
+  run "$brew" install --cask "$@"
+}
+
 setup_music() {
   log "== music =="
 
   if [ "$INSTALL_PACKAGES" -eq 1 ]; then
     install_brew_packages mpd mpc ncmpcpp
+    install_brew_casks hammerspoon
   fi
 
   ensure_dir "$HOME/.mpd/playlists"
@@ -156,6 +171,7 @@ setup_music() {
   link_path "$ROOT/mpd/mpd-macos.conf" "$HOME/.mpd/mpd.conf"
   link_path "$ROOT/ncmpcpp/config-macos" "$HOME/.ncmpcpp/config"
   link_path "$ROOT/ncmpcpp/bindings" "$HOME/.ncmpcpp/bindings"
+  link_path "$ROOT/hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
 }
 
 setup_editor() {
