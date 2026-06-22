@@ -7,10 +7,11 @@ INSTALL_PACKAGES=0
 DO_MUSIC=0
 DO_EDITOR=0
 DO_RANGER=0
+DO_GIT=0
 
 usage() {
   cat <<'USAGE'
-Usage: ./setup.sh [--all] [--music] [--editor] [--ranger] [--install-packages] [--apply]
+Usage: ./setup.sh [--all] [--music] [--editor] [--ranger] [--git] [--install-packages] [--apply]
 
 By default this is a dry run. Pass --apply to make changes.
 
@@ -18,6 +19,7 @@ Profiles:
   --music            Configure mpd/ncmpcpp
   --editor           Configure Neovim and Vim fallback
   --ranger           Configure ranger and clipboard helper
+  --git              Configure Git terminal tools
   --all              Configure all current v1 profiles
 
 Options:
@@ -33,10 +35,12 @@ while [ "$#" -gt 0 ]; do
       DO_MUSIC=1
       DO_EDITOR=1
       DO_RANGER=1
+      DO_GIT=1
       ;;
     --music) DO_MUSIC=1 ;;
     --editor) DO_EDITOR=1 ;;
     --ranger) DO_RANGER=1 ;;
+    --git) DO_GIT=1 ;;
     --install-packages) INSTALL_PACKAGES=1 ;;
     --apply) APPLY=1 ;;
     -h|--help)
@@ -52,7 +56,7 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 
-if [ "$DO_MUSIC$DO_EDITOR$DO_RANGER" = "000" ]; then
+if [ "$DO_MUSIC$DO_EDITOR$DO_RANGER$DO_GIT" = "0000" ]; then
   usage >&2
   exit 2
 fi
@@ -177,7 +181,12 @@ setup_music() {
 setup_editor() {
   log "== editor =="
   if [ "$INSTALL_PACKAGES" -eq 1 ]; then
-    install_brew_packages neovim node
+    local packages=()
+    command -v nvim >/dev/null 2>&1 || packages+=(neovim)
+    command -v npx >/dev/null 2>&1 || packages+=(node)
+    if [ "${#packages[@]}" -gt 0 ]; then
+      install_brew_packages "${packages[@]}"
+    fi
   fi
 
   ensure_dir "$HOME/.local/state/nvim/undo"
@@ -206,6 +215,16 @@ setup_ranger() {
   link_path "$ROOT/ranger/colorschemes" "$HOME/.config/ranger/colorschemes"
 }
 
+setup_git_tools() {
+  log "== git tools =="
+  if [ "$INSTALL_PACKAGES" -eq 1 ]; then
+    command -v gitui >/dev/null 2>&1 || install_brew_packages gitui
+  fi
+
+  # GitUI config/keybindings are intentionally left for a later pass after
+  # using the stock UI on both macOS and Linux.
+}
+
 if [ "$APPLY" -eq 0 ]; then
   log "Dry run only. Re-run with --apply to make changes."
 fi
@@ -213,5 +232,6 @@ fi
 [ "$DO_MUSIC" -eq 1 ] && setup_music
 [ "$DO_EDITOR" -eq 1 ] && setup_editor
 [ "$DO_RANGER" -eq 1 ] && setup_ranger
+[ "$DO_GIT" -eq 1 ] && setup_git_tools
 
 log "Done."

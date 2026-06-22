@@ -11,9 +11,14 @@ small:
 - baseline Neovim config, plus a minimal Vim fallback
 - AI-enabled Neovim chat through CodeCompanion and Codex ACP
 - ranger config with portable clipboard helpers
+- Git terminal tools such as `gitui`
 
 `ma08/botfiles` remains the home for coding-agent, orchestration, hooks, skills,
-and automation bootstrap. This repo should own user-facing terminal app config.
+secrets-aware shell bootstrap, and agent-specific aliases. This repo owns
+general human terminal UX: shell ergonomics, editors, music, file navigation,
+Git terminal tools, and user-facing app config. Botfiles can extend this
+environment for agent workflows, but should not replace it as the general
+dotfiles layer.
 
 ## Quick Start
 
@@ -33,6 +38,12 @@ Install the macOS music packages and apply music config:
 
 ```bash
 ./setup.sh --music --install-packages --apply
+```
+
+Install Git terminal tools:
+
+```bash
+./setup.sh --git --install-packages --apply
 ```
 
 Install packages for the full v1 profile and apply all current config:
@@ -115,6 +126,12 @@ The ranger profile links the repo's ranger config into `~/.config/ranger/` and
 installs `bin/dotfiles-clipboard-copy` into `~/.local/bin/`. The clipboard helper
 uses `pbcopy`, `wl-copy`, `xclip`, or `xsel`, depending on what the machine has.
 With `--install-packages`, the ranger profile installs `ranger` through Homebrew.
+
+## Git Tools
+
+The Git tools profile installs `gitui` through Homebrew/Linuxbrew. GitUI config
+and keybindings are intentionally left as a TODO until the stock UI has been
+used on both macOS and Linux.
 
 ## Historical Material
 
