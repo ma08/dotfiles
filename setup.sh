@@ -221,8 +221,7 @@ setup_git_tools() {
     command -v gitui >/dev/null 2>&1 || install_brew_packages gitui
   fi
 
-  # GitUI config/keybindings are intentionally left for a later pass after
-  # using the stock UI on both macOS and Linux.
+  link_path "$ROOT/gitui/key_bindings.ron" "$HOME/.config/gitui/key_bindings.ron"
 }
 
 if [ "$APPLY" -eq 0 ]; then

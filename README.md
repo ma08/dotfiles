@@ -130,8 +130,9 @@ With `--install-packages`, the ranger profile installs `ranger` through Homebrew
 ## Git Tools
 
 The Git tools profile installs `gitui` through Homebrew/Linuxbrew. GitUI config
-and keybindings are intentionally left as a TODO until the stock UI has been
-used on both macOS and Linux.
+uses vim-style navigation through:
+
+- `gitui/key_bindings.ron` -> `~/.config/gitui/key_bindings.ron`
 
 ## Historical Material
 
