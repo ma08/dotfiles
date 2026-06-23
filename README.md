@@ -120,6 +120,10 @@ In `git commit` buffers, press `,cm` to draft a commit message from the verbose
 commit buffer. Press `,cy` to accept CodeCompanion's proposed edit or `,cn` to
 reject it.
 
+While CodeCompanion is waiting on a chat or inline request, the statusline shows
+an `AI` spinner with the active adapter/model. It briefly changes to `AI done`,
+`AI cancelled`, or `AI error` when the request finishes.
+
 ## Ranger
 
 The ranger profile links the repo's ranger config into `~/.config/ranger/` and

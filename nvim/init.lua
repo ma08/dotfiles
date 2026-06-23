@@ -30,6 +30,7 @@ opt.wildmenu = true
 opt.wildmode = { "longest:full", "full" }
 opt.timeoutlen = 400
 opt.updatetime = 300
+opt.laststatus = 2
 
 opt.undofile = true
 opt.undodir = vim.fn.expand("~/.local/state/nvim/undo//")
@@ -47,6 +48,154 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { silent = true })
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { silent = true })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { silent = true })
+
+local codecompanion_status = {
+  active = 0,
+  clear_timer = nil,
+  frames = { "|", "/", "-", "\\" },
+  message = "",
+  spinner = 1,
+  timer = nil,
+}
+
+local function codecompanion_request_label(data)
+  local adapter = data and data.adapter or {}
+  local name = adapter.formatted_name or adapter.name or "AI"
+  local model = adapter.model
+
+  if model and model ~= "" then
+    return name .. " " .. model
+  end
+
+  return name
+end
+
+local function codecompanion_redraw_status()
+  pcall(vim.cmd, "redrawstatus")
+end
+
+local function codecompanion_clear_later()
+  if codecompanion_status.clear_timer then
+    codecompanion_status.clear_timer:stop()
+    codecompanion_status.clear_timer:close()
+  end
+
+  codecompanion_status.clear_timer = vim.uv.new_timer()
+  codecompanion_status.clear_timer:start(
+    2500,
+    0,
+    vim.schedule_wrap(function()
+      codecompanion_status.message = ""
+      codecompanion_redraw_status()
+    end)
+  )
+end
+
+local function codecompanion_start_spinner()
+  if codecompanion_status.clear_timer then
+    codecompanion_status.clear_timer:stop()
+    codecompanion_status.clear_timer:close()
+    codecompanion_status.clear_timer = nil
+  end
+
+  if codecompanion_status.timer then
+    return
+  end
+
+  codecompanion_status.timer = vim.uv.new_timer()
+  codecompanion_status.timer:start(
+    0,
+    120,
+    vim.schedule_wrap(function()
+      if codecompanion_status.active <= 0 then
+        return
+      end
+
+      codecompanion_status.spinner = (codecompanion_status.spinner % #codecompanion_status.frames) + 1
+      codecompanion_redraw_status()
+    end)
+  )
+end
+
+local function codecompanion_stop_spinner()
+  if codecompanion_status.timer then
+    codecompanion_status.timer:stop()
+    codecompanion_status.timer:close()
+    codecompanion_status.timer = nil
+  end
+  codecompanion_redraw_status()
+end
+
+function _G.CodeCompanionStatus()
+  if codecompanion_status.active > 0 then
+    return string.format(
+      " AI %s %s",
+      codecompanion_status.frames[codecompanion_status.spinner],
+      codecompanion_status.message
+    )
+  end
+
+  if codecompanion_status.message ~= "" then
+    return " AI " .. codecompanion_status.message
+  end
+
+  return ""
+end
+
+opt.statusline = table.concat({
+  "%f",
+  "%m%r%h%w",
+  "%=",
+  "%{v:lua.CodeCompanionStatus()}",
+  " %y",
+  " %l:%c",
+  " %P",
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = {
+    "CodeCompanionRequestStarted",
+    "CodeCompanionRequestStreaming",
+    "CodeCompanionRequestFinished",
+  },
+  group = vim.api.nvim_create_augroup("DotfilesCodeCompanionStatus", { clear = true }),
+  callback = function(event)
+    local data = event.data or {}
+
+    if event.match == "CodeCompanionRequestStarted" then
+      codecompanion_status.active = codecompanion_status.active + 1
+      codecompanion_status.message = codecompanion_request_label(data)
+      codecompanion_start_spinner()
+      codecompanion_redraw_status()
+      return
+    end
+
+    if event.match == "CodeCompanionRequestStreaming" then
+      codecompanion_status.message = "streaming " .. codecompanion_request_label(data)
+      codecompanion_redraw_status()
+      return
+    end
+
+    codecompanion_status.active = math.max(0, codecompanion_status.active - 1)
+    local status = data.status or "success"
+
+    if status == "success" then
+      codecompanion_status.message = "done"
+    elseif status == "cancelled" or status == "canceled" then
+      codecompanion_status.message = "cancelled"
+    else
+      codecompanion_status.message = "error"
+      vim.notify("CodeCompanion request failed: " .. tostring(status), vim.log.levels.WARN)
+    end
+
+    if codecompanion_status.active == 0 then
+      codecompanion_stop_spinner()
+      codecompanion_clear_later()
+    else
+      codecompanion_redraw_status()
+    end
+  end,
+})
 
 vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>CodeCompanionActions<CR>", {
   desc = "CodeCompanion actions",
