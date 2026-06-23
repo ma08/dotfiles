@@ -221,7 +221,11 @@ setup_git_tools() {
     command -v gitui >/dev/null 2>&1 || install_brew_packages gitui
   fi
 
-  link_path "$ROOT/gitui/key_bindings.ron" "$HOME/.config/gitui/key_bindings.ron"
+  if [ -x /opt/homebrew/bin/gitui ] || [ -x /home/linuxbrew/.linuxbrew/bin/gitui ]; then
+    link_path "$ROOT/bin/dotfiles-gitui" "$HOME/.local/bin/gitui"
+  fi
+
+  link_path "$ROOT/config/gitui/key_bindings.ron" "$HOME/.config/gitui/key_bindings.ron"
 }
 
 if [ "$APPLY" -eq 0 ]; then

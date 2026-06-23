@@ -136,7 +136,11 @@ With `--install-packages`, the ranger profile installs `ranger` through Homebrew
 The Git tools profile installs `gitui` through Homebrew/Linuxbrew. GitUI config
 uses vim-style navigation through:
 
-- `gitui/key_bindings.ron` -> `~/.config/gitui/key_bindings.ron`
+- `config/gitui/key_bindings.ron` -> `~/.config/gitui/key_bindings.ron`
+
+The setup also links `bin/dotfiles-gitui` to `~/.local/bin/gitui` on machines
+where GitUI is installed by Homebrew/Linuxbrew. Keeping config under
+`config/gitui/` avoids a zsh `AUTO_CD` collision with the `gitui` command.
 
 ## Historical Material
 
