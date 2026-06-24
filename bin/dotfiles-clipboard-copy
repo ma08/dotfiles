@@ -20,4 +20,3 @@ fi
 cat >/dev/null
 echo "dotfiles-clipboard-copy: no clipboard command found" >&2
 exit 1
-

@@ -34,4 +34,3 @@ inoremap jk <Esc>
 vnoremap < <gv
 vnoremap > >gv
 nnoremap <silent> <leader>h :nohlsearch<CR>
-
