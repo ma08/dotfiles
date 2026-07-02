@@ -85,8 +85,9 @@ handles after plugging, unplugging, or switching output devices.
 
 Hammerspoon also maps macOS media keys to MPD for play/pause, next, and
 previous. To avoid stealing media keys from Chrome or other players, it only
-handles them when MPD is already playing, or when MPD is paused and a terminal
-app is frontmost.
+handles them when MPD is already playing, or when MPD is paused and the
+frontmost app is not a known media app such as Chrome, Safari, Spotify, Music,
+VLC, or IINA.
 
 Terminal playback is the v1 success gate. macOS media keys / Now Playing support
 is a follow-up unless it becomes simple and reliable.

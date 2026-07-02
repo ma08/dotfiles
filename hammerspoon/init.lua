@@ -33,14 +33,20 @@ local function runMpdRestart(reason)
   hs.execute(command, true)
 end
 
-local mpdTerminalApps = {
-  ["Alacritty"] = true,
-  ["Ghostty"] = true,
-  ["iTerm2"] = true,
-  ["kitty"] = true,
-  ["Terminal"] = true,
-  ["WezTerm"] = true,
-  ["Warp"] = true,
+local mpdMediaPassThroughApps = {
+  ["Arc"] = true,
+  ["Brave Browser"] = true,
+  ["Firefox"] = true,
+  ["Google Chrome"] = true,
+  ["IINA"] = true,
+  ["Music"] = true,
+  ["Podcasts"] = true,
+  ["QuickTime Player"] = true,
+  ["Safari"] = true,
+  ["Spotify"] = true,
+  ["TV"] = true,
+  ["VLC"] = true,
+  ["YouTube Music"] = true,
 }
 
 local function mpdPlaybackState()
@@ -75,17 +81,19 @@ local function shouldHandleMpdMediaKey()
     return true
   end
 
-  if state == "paused" and mpdTerminalApps[frontmostAppName()] then
-    return true
+  if state ~= "paused" then
+    return false
   end
 
-  return false
+  return not mpdMediaPassThroughApps[frontmostAppName()]
 end
 
 function mpdMediaKeyStatus()
+  local frontmost = frontmostAppName()
   return {
-    frontmost = frontmostAppName(),
+    frontmost = frontmost,
     handles = shouldHandleMpdMediaKey(),
+    passThrough = mpdMediaPassThroughApps[frontmost] == true,
     state = mpdPlaybackState(),
   }
 end
