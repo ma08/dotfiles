@@ -69,6 +69,7 @@ Relevant paths:
 - MPD music directory: `/Users/sourya4/pro/youtube_download/music`
 - ncmpcpp config: `~/.ncmpcpp/config`
 - ncmpcpp bindings: `~/.ncmpcpp/bindings`
+- MPD CoreAudio restart helper: `~/.local/bin/dotfiles-mpd-restart`
 
 Basic checks:
 
@@ -77,6 +78,10 @@ mpd --no-daemon ~/.mpd/mpd.conf
 mpc update
 ncmpcpp
 ```
+
+Hammerspoon watches for macOS audio output changes and runs the MPD restart
+helper when MPD is already running. This works around stale CoreAudio device
+handles after plugging, unplugging, or switching output devices.
 
 Terminal playback is the v1 success gate. macOS media keys / Now Playing support
 is a follow-up unless it becomes simple and reliable.

@@ -1,4 +1,5 @@
 local mpc = "/opt/homebrew/bin/mpc"
+local mpdRestart = os.getenv("HOME") .. "/.local/bin/dotfiles-mpd-restart"
 local mpdHost = "127.0.0.1"
 local mpdPort = "6600"
 
@@ -19,6 +20,17 @@ end
 
 local function runMpc(args)
   hs.execute(mpcCommand(args) .. " >/dev/null 2>&1", true)
+end
+
+local function runMpdRestart(reason)
+  local command = table.concat({
+    shellQuote(mpdRestart),
+    "--if-running",
+    "--reason",
+    shellQuote(reason),
+    ">/dev/null 2>&1",
+  }, " ")
+  hs.execute(command, true)
 end
 
 local function mpdHasQueue()
@@ -66,3 +78,27 @@ if hs.accessibilityState(true) then
 else
   hs.alert.show("Enable Accessibility for Hammerspoon to control MPD media keys")
 end
+
+local mpdAudioRestartTimer = nil
+
+local function scheduleMpdAudioRestart(eventName)
+  if eventName ~= "dOut" and eventName ~= "sOut" and eventName ~= "dev#" then
+    return
+  end
+
+  if mpdAudioRestartTimer ~= nil then
+    mpdAudioRestartTimer:stop()
+  end
+
+  mpdAudioRestartTimer = hs.timer.doAfter(2.0, function()
+    local device = hs.audiodevice.defaultOutputDevice()
+    local deviceName = "unknown-output"
+    if device ~= nil then
+      deviceName = device:name() or deviceName
+    end
+    runMpdRestart("audio-device-" .. eventName .. "-" .. deviceName)
+  end)
+end
+
+hs.audiodevice.watcher.setCallback(scheduleMpdAudioRestart)
+hs.audiodevice.watcher.start()

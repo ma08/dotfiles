@@ -172,6 +172,7 @@ setup_music() {
   touch_file "$HOME/.mpd/sticker.sql"
   ensure_dir "$HOME/.ncmpcpp"
 
+  link_path "$ROOT/bin/dotfiles-mpd-restart" "$HOME/.local/bin/dotfiles-mpd-restart"
   link_path "$ROOT/mpd/mpd-macos.conf" "$HOME/.mpd/mpd.conf"
   link_path "$ROOT/ncmpcpp/config-macos" "$HOME/.ncmpcpp/config"
   link_path "$ROOT/ncmpcpp/bindings" "$HOME/.ncmpcpp/bindings"
