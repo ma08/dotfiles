@@ -33,15 +33,69 @@ local function runMpdRestart(reason)
   hs.execute(command, true)
 end
 
-local function mpdHasQueue()
-  local output, ok = hs.execute(mpcCommand("playlist"), true)
-  return ok and output ~= nil and output:match("%S") ~= nil
+local mpdTerminalApps = {
+  ["Alacritty"] = true,
+  ["Ghostty"] = true,
+  ["iTerm2"] = true,
+  ["kitty"] = true,
+  ["Terminal"] = true,
+  ["WezTerm"] = true,
+  ["Warp"] = true,
+}
+
+local function mpdPlaybackState()
+  local output, ok = hs.execute(mpcCommand("status"), true)
+  if not ok or output == nil then
+    return nil
+  end
+
+  if output:match("%[playing%]") then
+    return "playing"
+  end
+
+  if output:match("%[paused%]") then
+    return "paused"
+  end
+
+  return nil
+end
+
+local function frontmostAppName()
+  local app = hs.application.frontmostApplication()
+  if app == nil then
+    return ""
+  end
+
+  return app:name() or ""
+end
+
+local function shouldHandleMpdMediaKey()
+  local state = mpdPlaybackState()
+  if state == "playing" then
+    return true
+  end
+
+  if state == "paused" and mpdTerminalApps[frontmostAppName()] then
+    return true
+  end
+
+  return false
+end
+
+function mpdMediaKeyStatus()
+  return {
+    frontmost = frontmostAppName(),
+    handles = shouldHandleMpdMediaKey(),
+    state = mpdPlaybackState(),
+  }
 end
 
 local mediaActions = {
+  FAST = "next",
   PLAY = "toggle",
   NEXT = "next",
   PREVIOUS = "prev",
+  REWIND = "prev",
 }
 
 local ipc = require("hs.ipc")
@@ -58,7 +112,7 @@ local function startMpdMediaKeys()
     end
 
     local action = mediaActions[systemKey.key]
-    if action == nil or not mpdHasQueue() then
+    if action == nil or not shouldHandleMpdMediaKey() then
       return false
     end
 

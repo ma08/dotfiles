@@ -83,6 +83,11 @@ Hammerspoon watches for macOS audio output changes and runs the MPD restart
 helper when MPD is already running. This works around stale CoreAudio device
 handles after plugging, unplugging, or switching output devices.
 
+Hammerspoon also maps macOS media keys to MPD for play/pause, next, and
+previous. To avoid stealing media keys from Chrome or other players, it only
+handles them when MPD is already playing, or when MPD is paused and a terminal
+app is frontmost.
+
 Terminal playback is the v1 success gate. macOS media keys / Now Playing support
 is a follow-up unless it becomes simple and reliable.
 
