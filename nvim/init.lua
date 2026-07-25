@@ -253,38 +253,6 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local function azure_openai_v1_endpoint()
-  local endpoint = vim.env.AZURE_OPENAI_ENDPOINT
-  if endpoint and endpoint ~= "" then
-    endpoint = endpoint:gsub("/+$", "")
-    if not endpoint:match("/openai/v1$") then
-      endpoint = endpoint .. "/openai/v1"
-    end
-    return endpoint
-  end
-
-  local ok, lines = pcall(vim.fn.readfile, vim.fn.expand("~/.codex/config.toml"))
-  if not ok then
-    return ""
-  end
-
-  local in_azure_provider = false
-  for _, line in ipairs(lines) do
-    if line:match("^%s*%[model_providers%.azure%]%s*$") then
-      in_azure_provider = true
-    elseif in_azure_provider and line:match("^%s*%[") then
-      break
-    elseif in_azure_provider then
-      local base_url = line:match('^%s*base_url%s*=%s*"([^"]+)"')
-      if base_url then
-        return base_url:gsub("/+$", "")
-      end
-    end
-  end
-
-  return ""
-end
-
 require("lazy").setup({
   {
     "olimorris/codecompanion.nvim",
@@ -295,47 +263,31 @@ require("lazy").setup({
     opts = {
       adapters = {
         http = {
-          azure_openai_gpt55 = function()
-            return require("codecompanion.adapters").extend("openai_responses", {
-              url = "${endpoint}/responses",
-              env = {
-                api_key = "AZURE_OPENAI_API_KEY",
-                endpoint = azure_openai_v1_endpoint,
-              },
+          gemini_36_flash = function()
+            return require("codecompanion.adapters").extend("gemini", {
               opts = {
-                compaction = false,
                 stream = false,
                 tools = false,
                 vision = true,
               },
               schema = {
                 model = {
-                  default = "gpt-5.5",
+                  default = "gemini-3.6-flash",
                   choices = {
-                    ["gpt-5.5"] = {
-                      formatted_name = "GPT-5.5",
+                    ["gemini-3.6-flash"] = {
+                      formatted_name = "Gemini 3.6 Flash",
                       meta = { context_window = 1050000 },
                       opts = {
                         can_reason = true,
-                        has_function_calling = true,
+                        can_form_structured_outputs = true,
                         has_vision = true,
                       },
                     },
                   },
                 },
-                ["reasoning.effort"] = {
-                  default = "medium",
-                },
-                top_p = {
-                  enabled = function()
-                    return false
-                  end,
-                },
-                max_output_tokens = {
-                  default = 2048,
-                },
-                verbosity = {
-                  default = "medium",
+                thinkingLevel = {
+                  default = "minimal",
+                  choices = { "minimal", "low", "medium", "high" },
                 },
               },
             })
@@ -363,7 +315,7 @@ require("lazy").setup({
           adapter = "codex",
         },
         inline = {
-          adapter = "azure_openai_gpt55",
+          adapter = "gemini_36_flash",
           keymaps = {
             stop = {
               modes = { n = "<leader>cs" },

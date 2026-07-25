@@ -124,8 +124,13 @@ npx -y @zed-industries/codex-acp
 
 Use `:CodeCompanionChat` inside Neovim to open an AI chat buffer. The first run
 may download plugins and the ACP adapter. ChatGPT auth must be available through
-Codex/Codex ACP on the machine; API-key and Azure OpenAI variants can be added
-later without changing the base music/editor/ranger setup.
+Codex/Codex ACP on the machine.
+
+Inline edits use Gemini 3.6 Flash through CodeCompanion's Gemini HTTP adapter.
+Set `GEMINI_API_KEY` in the machine-local botfiles secrets loaded by `.botenv`;
+do not place it in this repository. The adapter is intentionally non-streaming
+because CodeCompanion's Gemini inline handler requires a complete response. It
+uses Gemini's `minimal` thinking level to keep inline edits responsive.
 
 In `git commit` buffers, press `,cm` to draft a commit message from the verbose
 commit buffer. Press `,cy` to accept CodeCompanion's proposed edit or `,cn` to
