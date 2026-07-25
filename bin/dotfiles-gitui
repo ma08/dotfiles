@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -x /opt/homebrew/bin/gitui ]; then
+  exec /opt/homebrew/bin/gitui "$@"
+fi
+
+if [ -x /home/linuxbrew/.linuxbrew/bin/gitui ]; then
+  exec /home/linuxbrew/.linuxbrew/bin/gitui "$@"
+fi
+
+resolved="$(command -v gitui 2>/dev/null || true)"
+if [ -n "$resolved" ] && [ "$resolved" != "$0" ]; then
+  exec "$resolved" "$@"
+fi
+
+echo "ERROR: gitui binary not found; install GitUI or rerun setup with --install-packages" >&2
+exit 127

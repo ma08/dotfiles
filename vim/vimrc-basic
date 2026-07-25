@@ -1,0 +1,36 @@
+set nocompatible
+filetype plugin indent on
+syntax enable
+
+set encoding=utf-8
+set number
+set ruler
+set showcmd
+set confirm
+set autoread
+set backspace=indent,eol,start
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smartindent
+
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set wrapscan
+set wildmenu
+set timeoutlen=400
+
+if has('clipboard')
+  set clipboard=unnamed
+endif
+
+let mapleader=","
+
+inoremap jk <Esc>
+vnoremap < <gv
+vnoremap > >gv
+nnoremap <silent> <leader>h :nohlsearch<CR>

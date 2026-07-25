@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+only_if_running=0
+reason="manual"
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --if-running)
+      only_if_running=1
+      ;;
+    --reason)
+      shift
+      reason="${1:-manual}"
+      ;;
+    *)
+      echo "ERROR: unknown argument: $1" >&2
+      exit 2
+      ;;
+  esac
+  shift
+done
+
+mpd_bin="${MPD_BIN:-}"
+mpc_bin="${MPC_BIN:-}"
+mpd_config="${MPD_CONFIG:-$HOME/.mpd/mpd.conf}"
+mpd_log_dir="$HOME/.mpd"
+restart_log="$mpd_log_dir/restart.log"
+
+if [ -z "$mpd_bin" ]; then
+  if [ -x /opt/homebrew/bin/mpd ]; then
+    mpd_bin=/opt/homebrew/bin/mpd
+  elif [ -x /home/linuxbrew/.linuxbrew/bin/mpd ]; then
+    mpd_bin=/home/linuxbrew/.linuxbrew/bin/mpd
+  else
+    mpd_bin="$(command -v mpd 2>/dev/null || true)"
+  fi
+fi
+
+if [ -z "$mpc_bin" ]; then
+  if [ -x /opt/homebrew/bin/mpc ]; then
+    mpc_bin=/opt/homebrew/bin/mpc
+  elif [ -x /home/linuxbrew/.linuxbrew/bin/mpc ]; then
+    mpc_bin=/home/linuxbrew/.linuxbrew/bin/mpc
+  else
+    mpc_bin="$(command -v mpc 2>/dev/null || true)"
+  fi
+fi
+
+if [ -z "$mpd_bin" ] || [ -z "$mpc_bin" ]; then
+  echo "ERROR: mpd/mpc not found" >&2
+  exit 127
+fi
+
+mkdir -p "$mpd_log_dir"
+
+log() {
+  printf '%s %s\n' "$(date '+%Y-%m-%dT%H:%M:%S%z')" "$*" >> "$restart_log"
+}
+
+if ! pgrep -x mpd >/dev/null 2>&1; then
+  if [ "$only_if_running" -eq 1 ]; then
+    log "skip: mpd not running reason=$reason"
+    exit 0
+  fi
+fi
+
+status="$("$mpc_bin" -h 127.0.0.1 -p 6600 status 2>/dev/null || true)"
+was_playing=0
+if printf '%s\n' "$status" | grep -q '\[playing\]'; then
+  was_playing=1
+fi
+
+log "restart begin reason=$reason was_playing=$was_playing"
+
+pkill -x mpd >/dev/null 2>&1 || true
+for _ in 1 2 3 4 5; do
+  if ! pgrep -x mpd >/dev/null 2>&1; then
+    break
+  fi
+  sleep 0.2
+done
+
+if pgrep -x mpd >/dev/null 2>&1; then
+  pkill -KILL -x mpd >/dev/null 2>&1 || true
+  sleep 0.5
+fi
+
+"$mpd_bin" "$mpd_config"
+sleep 0.8
+
+if [ "$was_playing" -eq 1 ]; then
+  "$mpc_bin" -h 127.0.0.1 -p 6600 play >/dev/null 2>&1 || true
+fi
+
+log "restart complete reason=$reason"
